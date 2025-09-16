@@ -39,12 +39,30 @@ with BlPaint and therefore can be used too."
 
 MGCardElement >> initialize [
     super initialize.
-    self size: 80 @ 80.
+"    self size: 80 @ 80. " "replaced with cardExtent"
+    self size: self cardExtent.
     "A BlBackground is needed for the #background: method, but the
 BlPaint
 is polymorphic with BlBackground and therefore can be used too."
     self background: self backgroundPaint.
-    self geometry: BlCircleGeometry new.
+
+    " no geometry to circle to rounded rectangle"
+    " self geometry: BlCircleGeometry new. "
+    self geometry: (BlRoundedRectangleGeometry cornerRadius: self cardCornerRadius ).    
     self card: (MGCard new symbol: $a)			     
 ]
+
+
+MGCardElement >> cardExtent [
+^ 80@80
+
+]
+
+MGCardElement >> cardCornerRadius [
+^ 12
+
+]
+
+
+"cardbackForm bitmap"
 
