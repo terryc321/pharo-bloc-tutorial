@@ -69,8 +69,6 @@ p hello.
 ===============================================================================
 
 not sure how we interrupted execution of 
-
-
 ===============================================================================
 ClySystemEnvironment we can get one from class instance method call
 just a method call on the class itself , not an instance of a class
@@ -98,6 +96,32 @@ ZZFooBar test.
 "this just confirms that the system as whole is still working as it should"
 
 "we can see Pigeon class now and a hello !"
+============================================================================
+
+ClassDescription >> #compile: sourceCode classified: protocol
+we can now compile a method 
+
+ZZFooBar compile: 'hello3 ^ 3' classified: 'magic number3'. 
+
+============================================================================
+how do we delete a method (or remove it )
+or really how do we intercept what messages are causing things to actually happen ?
+
+
+============================================================================
+
+"we can list"
+Smalltalk globals.
+
+
+SmalltalkImage seems to be the entry point to the smalltalk image.
+
+===========================================================================
+
+c := CircleMorph new openInHand.
+b := BorderedMorph new openInHand .
+
+
 ============================================================================
 
 "put pigeon into birds package "
