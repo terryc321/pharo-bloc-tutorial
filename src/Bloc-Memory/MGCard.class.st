@@ -21,6 +21,27 @@ MGCard >> announcer [
 ]
 
 { #category : 'initialization' }
+MGCard >> disappear [
+self notifyDisappear
+
+
+
+
+]
+
+{ #category : 'initialization' }
+MGCard >> flip [
+ flipped := flipped not.
+ self notifyFlipped.
+
+
+
+
+
+
+]
+
+{ #category : 'initialization' }
 MGCard >> initialize [ 
  super initialize. 
  flipped := false.
@@ -30,6 +51,27 @@ MGCard >> initialize [
 { #category : 'initialization' }
 MGCard >> isFlipped [
  ^ flipped 
+
+
+
+
+]
+
+{ #category : 'initialization' }
+MGCard >> notifyDisappear [
+ self announcer announce: MGCardDisappearAnnouncement new
+
+
+
+
+
+
+]
+
+{ #category : 'initialization' }
+MGCard >> notifyFlipped [
+ self announcer announce: MGCardFlippedAnnouncement new
+
 
 
 
