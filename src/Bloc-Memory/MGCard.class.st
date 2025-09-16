@@ -1,3 +1,18 @@
+"
+load bloc
+```
+Metacello new
+	baseline: 'Bloc';
+	repository: 'github://pharo-graphics/Bloc:master/src';
+	load	
+```
+
+```
+spec baseline: 'Bloc' with: [ spec repository: 'github://pharo-graphics/Bloc:v2.5.0/src' ].
+```
+
+
+"
 Class {
 	#name : 'MGCard',
 	#superclass : 'Object',
