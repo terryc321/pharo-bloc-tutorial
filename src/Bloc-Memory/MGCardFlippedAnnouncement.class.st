@@ -1,7 +1,7 @@
 Class {
 	#name : 'MGCardFlippedAnnouncement',
 	#superclass : 'Announcement',
-	#category : 'Bloc-Memory-Model',
+	#category : 'Bloc-Memory-Events',
 	#package : 'Bloc-Memory',
-	#tag : 'Model'
+	#tag : 'Events'
 }
