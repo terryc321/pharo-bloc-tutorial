@@ -27,29 +27,94 @@ Pigeon browse.
 
 "we find we do not see anything related to Pigeon this is because Pigeon class belongs to no package"
 
-
 "we can coerce the symbol Pigeon to the corresponding class"
-#Pigeon asClass = Pigeon . 
+"FIXME this comparison did not work"
+"#Pigeon asClass = Pigeon . "
 
 "we can remove the pigeon class"
 Smalltalk removeClassNamed: #Pigeon.
 
+"how do we find if class Pigeon exists ? we check again Object class"
+Smalltalk at: #Pigeon ifAbsent: [ ^ false ]. 
+Smalltalk at: #Object ifAbsent: [ ^ false ].
+Smalltalk at: #Pigeon ifPresent: [ ^ true ] ifAbsent: [ ^ false ].
+
 "lets create Pigeon class again - to check no conflicts "
 Object subclass: #Pigeon.
-
 
 "lets check that Pigeon is identified as a class"
 Pigeon class.  
 
 Pigeon browse.
 "you may find you cannot see anything called Pigeon - it has no package and no category"
+"package is _UnpackagedPackage"
+
+"lets give our pigeon class a package to live in "
+birdsPackage := Smalltalk organization addPackage: #Birds.
+birdsPackage addClass: Pigeon.
+Pigeon browse.
 
 " lets give our pigeon an instance variable - name"
 Pigeon addInstVarNamed: #name.
 
-"lets add a method to Pigeon to say hello , the pigeon will say hello on the transcript "
-(Smalltalk at: #Pigeon) compile: 'hello
- Transcript show: ''Pigeon says'' , name ; cr '.
+"FIXME - this wont work at all ! lets add a method to Pigeon to say hello , the pigeon will say hello on the transcript "
+(Smalltalk at: #Pigeon) compile: 'hello Transcript show: ''Pigeon says'' , name ; cr '.
+
+FIXME ... add a method to pigeon class ..
+System Browser in pharo is called Calypso . all packages methods prefixed Cly presumably to mean Calypso ...
+
+"lets make a pigeon and see if it squawks !"
+p := Pigeon new.
+p hello.
+===============================================================================
+
+not sure how we interrupted execution of 
+
+
+===============================================================================
+ClySystemEnvironment we can get one from class instance method call
+just a method call on the class itself , not an instance of a class
+
+ClySystemEnvironment currentImage.   
+
+str := 'Object << #ZZFooBar
+	layout: FixedLayout;
+	traits: {};
+	slots: { #cow . #milk };
+	sharedVariables: {};
+	sharedPools: {};
+	tag: '''' ;
+	package: ''ZZPackage'' '.
+ClySystemEnvironment currentImage compileANewClassFrom: str notifying: nil startingFrom: nil . 
+
+
+"we added class side method test "
+test
+ ^ 'yes' 
+
+"running this should result in 'yes' "
+ZZFooBar test. 
+
+"this just confirms that the system as whole is still working as it should"
+
+"we can see Pigeon class now and a hello !"
+============================================================================
+
+"put pigeon into birds package "
+
+"we can get a PackageOrganizer from Smalltalk"
+"PackageOrganizer in charge of packages and package tags "
+Smalltalk organization removePackage: #birds.
+Smalltalk organization removePackage: #cows.
+
+Smalltalk organization ensurePackage: 'birds'. 
+Smalltalk organization ensurePackage: 'fools' withTags: #( #foo) .
+Smalltalk organization ensurePackage: 'fools' withTags: #( #foo #bar) .
+
+"PackageTag has method addClass: "
+"how do i make a package tag ? "
+
+"xPackage addClass: c "
 
 "lets add an initialize "
 
