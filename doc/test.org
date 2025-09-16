@@ -1,0 +1,683 @@
+
+#
+#+LATEX_HEADER: \\usepackage{dejavu}\\renewcommand*\\familydefault{\\ttdefault} [[file:dog.jpg]] $\\parbox{5cm}{\\normalfont This text should be displayed to the right of the image above.\\\\ Ideally, this would work for multiple lines, but if it\'s just one long wrapped line, that would be find too.}$
+
+Teach Smalltalk programming language as though everything done through the playground (also called workspace)
+
+Be able to wield the full power of Smalltalk through the language completely without IDE or interface 
+
+Allows me to be able to save a text file and paste into playground and run !
+
+#+BEGIN_SRC smalltalk
+"where-ever I say GT , I mean Glamorous Toolkit"
+
+"topic : closures"
+
+[:x | x + 1] value: 2 .
+
+[:x :y | x + y] value: 2 value: 3.
+
+"topic : classes"
+
+"lets add a completely new class Pigeon"
+Object subclass: #Pigeon.
+
+"lets check it exists"
+Pigeon browse.
+
+"we find we do not see anything related to Pigeon this is because Pigeon class belongs to no package"
+
+
+"we can coerce the symbol Pigeon to the corresponding class"
+#Pigeon asClass = Pigeon . 
+
+"we can remove the pigeon class"
+Smalltalk removeClassNamed: #Pigeon.
+
+"lets create Pigeon class again - to check no conflicts "
+Object subclass: #Pigeon.
+
+
+"lets check that Pigeon is identified as a class"
+Pigeon class.  
+
+Pigeon browse.
+"you may find you cannot see anything called Pigeon - it has no package and no category"
+
+" lets give our pigeon an instance variable - name"
+Pigeon addInstVarNamed: #name.
+
+"lets add a method to Pigeon to say hello , the pigeon will say hello on the transcript "
+(Smalltalk at: #Pigeon) compile: 'hello
+ Transcript show: ''Pigeon says'' , name ; cr '.
+
+"lets add an initialize "
+
+You can also directly execute a method, explicitly passing in the
+receiver and any arguments. Here we look up the hello method we
+compiled earlier in the HelloWorld class. Then we directly execute the
+method ( i.e., without any further lookup) with a Hello World instance
+as the receover and an empty argument array:
+
+method := #HelloWorld asClass>>#hello.
+method valueWithReceiver: #HelloWorld asClass new arguments: #().
+
+Smalltalk removeClassNamed: #Pigeon.  
+
+
+"we could also just slam a nil where HelloWorld would reside - this breaks things"
+Smalltalk at: #HelloWorld put: nil.
+
+
+
+
+"GT suggests
+Object subclass: #HelloWorld  instanceVariableNames: ''  classVariableNames: ''  category: 'HelloWorld'.
+"
+
+
+"glamourous toolkit compiling and evaluating code "
+
+Smalltalk compiler evaluate: '3 + 4'.
+
+MGAlpha addClassVarNamed: 'ridiculous'.
+MGAlpha addInstVarNamed: 'porkey'.
+
+Cat 
+  compile: 'makeSound
+    "Make Cat object make sound."
+    Transcript show: ''Meow!''.'
+  classified: 'actions'.
+
+Class methods select: [:m | m selector beginsWith: 'subclass:'].
+
+
+(Smalltalk at: #HelloWorld) compile: 'hello ^ ''hello'''.
+
+#HelloWorld asClass compile: 'hello ^ ''hello'''.
+
+((Smalltalk at: #HelloWorld) perform: #new) perform: #hello.
+
+3 perform: #+ with: 4.
+
+3 perform: #+ withArguments: {4}.
+
+
+#+END_SRC
+
+
+#+BEGIN_SRC smalltalk
+Metacello new
+          baseline: 'BlocMemoryTutorial';
+          repository: 'github://pharo-graphics/Bloc-Memory-Tutorial/src';
+          load
+
+MGGame withEmoji .
+
+MGGameElement openWithNumber .
+#+END_SRC
+
+
+A graphical element will inherit from BlElement
+
+#+BEGIN_SRC
+BlElement << #MGAlpha
+	slots: { #background };
+	tag: 'Elements';
+	package: 'Bloc-Memory'.
+
+MGAlpha >> initialize [
+    super initialize.
+    self size: 80 @ 80.
+    background := Color lightOrange.
+    self background:  background.
+    self geometry: BlCircleGeometry new.
+    self addEventHandlerOn: BlClickEvent do: [ :anEvent | self click ]
+]
+
+MGAlpha >> click [
+    background = Color lightOrange ifTrue:[ background := Color blue ] ifFalse:[ background := Color lightOrange]
+    self geometry: BlCircleGeometry new.
+    "self addEventHandlerOn: BlClickEvent do: [ :anEvent | self click ]"
+]
+
+
+MGAlpha addClassVarNamed: 'ridiculous'.
+MGAlpha addInstVarNamed: 'porkey'.
+
+#+END_SRC
+
+
+#+BEGIN_SRC 
+    (add-to-list 'org-structure-template-alist
+		 '("s" "#+NAME: ?\n#+BEGIN_SRC \n\n#+END_SRC"))
+  ;; in org mode
+  ;; press <s  TAB should give
+  "#+NAME:" 
+  "#+BEGIN_SRC" 
+  "#+END_SRC"
+  
+#+END_SRC
+
+
+#+BEGIN_SRC
+Metacello new
+	baseline: 'Bloc';
+	repository: 'github://pharo-graphics/Bloc:master/src';
+	load
+#+END_SRC
+
+#+BEGIN_SRC
+spec baseline: 'Bloc' with: [ spec repository: 'github://pharo-graphics/Bloc:v2.5.0/src' ].
+#+END_SRC
+
+
+
+# dml-create-graph "NAME"
+# will produce NAME.png NAME.ps
+#+header:
+#+exports: no-export
+#+BEGIN_SRC lisp
+  (ql:quickload :dml)			
+  (in-package :dml)
+
+  ;; MG memory game
+  (dml-create-graph "mgcard-class" ()
+
+    ;; mgcard class
+    (with-method ("+ initialize"
+		  "+ symbol (Character)"
+		  "+ announcer ()"
+		  "+ flip ()"
+		"+ isFlipped ()"
+		"+ notifyFlipped ()"
+		  "+ disappear ()"
+		  "+ notifyDisappear ()")
+      (full-class "MGCard"
+		  "Object"
+		  (attributes "- symbol : Character"
+			      "- flipped : Boolean"
+			      "- announcer : Announcer"
+			      ))))
+
+#+END_SRC	   
+
+#+RESULTS:
+: NIL
+
+[[file:mgcard-class.png]]
+
+#+name: mgcard_class
+#+BEGIN_SRC smalltalk :tangle "src/Bloc-Memory/MGCard.class.st"
+Class {
+	#name : 'MGCard',
+	#superclass : 'Object',
+	#instVars : [
+		'symbol',
+		'flipped',
+		'announcer'
+	],
+	#category : 'Bloc-Memory-Model',
+	#package : 'Bloc-Memory',
+	#tag : 'Model'
+}
+
+MGCard >> announcer [
+ ^ announcer ifNil: [ announcer := Announcer new ]
+]
+
+MGCard >> disappear [
+self notifyDisappear
+]
+
+MGCard >> flip [
+ flipped := flipped not.
+ self notifyFlipped.
+]
+
+MGCard >> initialize [ 
+ super initialize. 
+ flipped := false.
+]
+
+MGCard >> isFlipped [
+ ^ flipped 
+]
+
+MGCard >> notifyDisappear [
+ self announcer announce: MGCardDisappearAnnouncement new
+]
+
+MGCard >> notifyFlipped [
+ self announcer announce: MGCardFlippedAnnouncement new
+]
+
+MGCard >> printOn: aStream [
+aStream 
+nextPutAll: 'Card';
+nextPut: Character space;
+nextPut: $( ;
+nextPut: self symbol;
+nextPut: $)
+]
+
+MGCard >> symbol [
+ ^ symbol
+]
+
+MGCard >> symbol: aCharacter [
+ symbol := aCharacter.
+]
+#+END_SRC
+
+
+#+BEGIN_SRC lisp
+      (ql:quickload :dml)			
+      (in-package :dml)
+
+      ;; MG memory game
+      (dml-create-graph "mgcard-element-class" ()
+
+	;; mgcard class
+	(with-method ("initialize"
+		      "card"
+		      "card: aCard"
+		      "backgroundPaint"		  
+		      "cardExtent"
+		      "cardCornerRadius")
+	  (full-class "MGCardElement"
+		      ""
+		      (attributes "- card "
+				  ))))
+
+#+END_SRC	   
+
+#+RESULTS:
+: NIL
+
+[[file:mgcard-element-class.png]]
+
+#+name: mgcard_element_class
+#+BEGIN_SRC smalltalk :tangle "src/Bloc-Memory/MGCardElement.class.st"
+"
+In Bloc, BlElements draw themselves onto the integrated canvas of the in-
+spector as we inspect them, take a look at our element by executing this (See
+Figure 3-1).
+```
+MGCardElement new inspect
+```
+"	      
+Class {
+	#name : 'MGCardElement',
+	#superclass : 'BlElement',
+	#instVars : [
+'card'
+],
+	#category : 'Bloc-Memory-Elements',
+	#package : 'Bloc-Memory',
+	#tag : 'Elements'
+    }
+MGCardElement >> card [
+^ card  
+]
+
+MGCardElement >> card: aMgCard [
+    card  := aMgCard
+]
+
+
+MGCardElement >> backgroundPaint [
+    "Return a BlPaint that should be used as a background (fill)
+of both back and face sides of the card. Colors are polymorphic
+with BlPaint and therefore can be used too."
+    ^ Color pink darker
+]
+
+
+MGCardElement >> initialize [
+    super initialize.
+"    self size: 80 @ 80. " "replaced with cardExtent"
+    self size: self cardExtent.
+    "A BlBackground is needed for the #background: method, but the
+BlPaint
+is polymorphic with BlBackground and therefore can be used too."
+    self background: self backgroundPaint.
+
+    " no geometry to circle to rounded rectangle"
+    " self geometry: BlCircleGeometry new. "
+    self geometry: (BlRoundedRectangleGeometry cornerRadius: self cardCornerRadius ).    
+    self card: (MGCard new symbol: $a)			     
+]
+
+
+MGCardElement >> cardExtent [
+^ 80@80
+]
+
+MGCardElement >> cardCornerRadius [
+^ 12
+]
+
+"cardbackForm bitmap from bloc-memory game"
+"just get the code"
+
+#+END_SRC
+
+
+Announcements
+
+#+BEGIN_SRC lisp
+  (ql:quickload :dml)			
+  (in-package :dml)
+
+  ;; MG memory game
+  (dml-create-graph "mgcard-announcement-classes" ()
+
+    (-genby-*
+       (full-class "Announcement"
+		   ""
+		   (attributes "- name : String"
+			       "- born : Date"))
+       (full-class "MGCardFlippedAnnouncement")
+       (full-class "MGCardDisappearAnnouncement")))
+#+END_SRC	   
+
+#+RESULTS:
+: NIL
+
+file:mgcard-announcement-classes.png
+
+
+#+name: mgcard_disappear_announcement
+#+header: :tangle "src/Bloc-Memory/MGCardDisappearAnnouncement.class.st"
+#+BEGIN_SRC smalltalk
+Class {
+	#name : 'MGCardDisappearAnnouncement',
+	#superclass : 'Announcement',
+	#category : 'Bloc-Memory-Events',
+	#package : 'Bloc-Memory',
+	#tag : 'Events'
+}
+#+END_SRC
+
+#+name: mgcard_flipped_announcement
+#+header: :tangle "src/Bloc-Memory/MGCardFlippedAnnouncement.class.st"
+#+BEGIN_SRC smalltalk 
+Class {
+	#name : 'MGCardFlippedAnnouncement',
+	#superclass : 'Announcement',
+	#category : 'Bloc-Memory-Events',
+	#package : 'Bloc-Memory',
+	#tag : 'Events'
+}
+#+END_SRC
+
+
+
+Package.st file contains name of package
+
+#+name: mgpackage
+#+header: :tangle "src/Bloc-Memory/Package.st"
+#+BEGIN_SRC smalltalk 
+Package { #name : 'Bloc-Memory' }
+#+END_SRC
+
+
+Hidden .properties file - tonel
+
+#+name: properties
+#+header: :tangle "src/.properties"
+#+BEGIN_SRC smalltalk 
+{
+	#format : #tonel
+} 
+#+END_SRC
+
+
+pharo bloc memory game tutorial
+
+bloc is low level graphics
+
+brick is widget library built on top
+
+tangle C-c C-v C-t
+C-c C-v C-a	org-babel-sha1-hash
+C-c C-v C-b	org-babel-execute-buffer
+C-c C-v C-c	org-babel-check-src-block
+C-c C-v C-d	org-babel-demarcate-block
+C-c C-v C-e	org-babel-execute-maybe
+C-c C-v C-f	org-babel-tangle-file
+C-c C-v TAB	org-babel-view-src-block-info
+C-c C-v C-j	org-babel-insert-header-arg
+C-c C-v C-l	org-babel-load-in-session
+C-c C-v C-n	org-babel-next-src-block
+C-c C-v C-o	org-babel-open-src-block-result
+C-c C-v C-p	org-babel-previous-src-block
+C-c C-v C-r	org-babel-goto-named-result
+C-c C-v C-s	org-babel-execute-subtree
+C-c C-v C-t	org-babel-tangle
+C-c C-v C-u	org-babel-goto-src-block-head
+C-c C-v C-v	org-babel-expand-src-block
+C-c C-v C-x	org-babel-do-key-sequence-in-edit-buffer
+C-c C-v C-z	org-babel-switch-to-session
+C-c C-v I	org-babel-view-src-block-info
+C-c C-v a	org-babel-sha1-hash
+C-c C-v b	org-babel-execute-buffer
+C-c C-v c	org-babel-check-src-block
+C-c C-v d	org-babel-demarcate-block
+C-c C-v e	org-babel-execute-maybe
+C-c C-v f	org-babel-tangle-file
+C-c C-v g	org-babel-goto-named-src-block
+C-c C-v h	org-babel-describe-bindings
+C-c C-v i	org-babel-lob-ingest
+C-c C-v j	org-babel-insert-header-arg
+C-c C-v k	org-babel-remove-result-one-or-many
+C-c C-v l	org-babel-load-in-session
+C-c C-v n	org-babel-next-src-block
+C-c C-v o	org-babel-open-src-block-result
+C-c C-v p	org-babel-previous-src-block
+C-c C-v r	org-babel-goto-named-result
+C-c C-v s	org-babel-execute-subtree
+C-c C-v t	org-babel-tangle
+C-c C-v u	org-babel-goto-src-block-head
+C-c C-v v	org-babel-expand-src-block
+C-c C-v x	org-babel-do-key-sequence-in-edit-buffer
+C-c C-v z	org-babel-switch-to-session-with-code
+
+C-c " a		orgtbl-ascii-plot
+C-c " g		org-plot/gnuplot
+
+C-c C-M-l	org-insert-all-links
+C-c C-M-w	org-refile-reverse
+C-c M-b		org-previous-block
+C-c M-f		org-next-block
+C-c M-l		org-insert-last-stored-link
+C-c M-w		org-refile-copy
+
+C-c C-x C-a	org-archive-subtree-default
+C-c C-x C-b	org-toggle-checkbox
+C-c C-x C-c	org-columns
+C-c C-x C-d	org-clock-display
+C-c C-x C-f	org-emphasize
+C-c C-x TAB	org-clock-in
+C-c C-x C-j	org-clock-goto
+C-c C-x C-l	org-latex-preview
+C-c C-x C-n	org-next-link
+C-c C-x C-o	org-clock-out
+C-c C-x C-p	org-previous-link
+C-c C-x C-q	org-clock-cancel
+C-c C-x C-r	org-toggle-radio-button
+C-c C-x C-s	org-archive-subtree
+C-c C-x C-t	org-toggle-time-stamp-overlays
+C-c C-x C-u	org-dblock-update
+C-c C-x C-v	org-toggle-inline-images
+C-c C-x C-w	org-cut-special
+C-c C-x C-x	org-clock-in-last
+C-c C-x C-y	org-paste-special
+C-c C-x C-z	org-resolve-clocks
+C-c C-x !	org-reload
+C-c C-x ,	org-timer-pause-or-continue
+C-c C-x -	org-timer-item
+C-c C-x .	org-timer
+C-c C-x 0	org-timer-start
+C-c C-x ;	org-timer-set-timer
+C-c C-x <	org-agenda-set-restriction-lock
+C-c C-x >	org-agenda-remove-restriction-lock
+
+
+
+C-c C-x @	org-cite-insert
+C-c C-x A	org-archive-to-archive-sibling
+C-c C-x E	org-inc-effort
+C-c C-x G	org-feed-goto-inbox
+C-c C-x I	org-info-find-node
+C-c C-x P	org-set-property-and-value
+C-c C-x [	org-reftex-citation
+C-c C-x \	org-toggle-pretty-entities
+C-c C-x _	org-timer-stop
+C-c C-x a	org-toggle-archive-tag
+C-c C-x b	org-tree-to-indirect-buffer
+C-c C-x c	org-clone-subtree-with-time-shift
+C-c C-x d	org-insert-drawer
+C-c C-x e	org-set-effort
+C-c C-x f	org-footnote-action
+C-c C-x g	org-feed-update-all
+C-c C-x o	org-toggle-ordered-property
+C-c C-x p	org-set-property
+C-c C-x q	org-toggle-tags-groups
+C-c C-x v	org-copy-visible
+C-c C-x x	org-dynamic-block-insert-dblock
+
+C-c C-v C-M-h	org-babel-mark-block
+
+C-c C-x C-M-v	org-redisplay-inline-images
+C-c C-x M-w	org-copy-special
+
+
+#+NAME: hello_world
+# #+BEGIN_SRC c
+# #include <stdio.h>
+# int main(int argc, char *argv[])
+# {
+#     printf("Hello world\n");
+#     return 0;
+# }
+# #+END_SRC
+
+ 
+#+BEGIN_COMMENT
+#+header: :tangle no
+#+header: :tangle yes
+#+END_COMMENT
+
+#+name: hello-world
+##+header: :var message="Hello World!"
+#+header: :tangle "fred.lisp"
+#+begin_src lisp :package any 
+  (ql:quickload :dml)			;
+  (in-package :dml)
+
+  (format t "hello world")
+
+#+END_SRC
+
+#+RESULTS:
+: NIL
+
+#+RESULTS: hello-world
+: NIL
+
+
+#+header: :tangle no
+#+BEGIN_SRC 
+Metacello new
+baseline: 'BlocMemoryTutorial';
+repository: 'github://pharo-graphics/Bloc-Memory-Tutorial/src';
+load
+#+END_SRC
+
+# dml-create-graph "os-class" will produce os-class.png os-class.ps postscript file
+#+header: :exports no-export
+#+BEGIN_SRC lisp
+(ql:quickload :dml)			;
+(in-package :dml)
+
+(dml-create-graph "os-class" ()
+  (with-method ("+ play () : Love" "+ work () : Hate")
+    (-genby-*
+     (full-class "OS"
+                 "abstract"
+                 (attributes "- name : String"
+                             "- born : Date"))
+     (full-class "Linux")
+     (full-class "Android")
+     (full-class "Apple")
+     (full-class "Windows"))
+    (-dep- "from"
+           (@name "Android")
+           (@name"Linux"))))
+
+#+END_SRC	   
+
+
+# dml-create-graph "os-class" will produce os-class.png os-class.ps postscript file
+#+header: :exports no-export
+#+BEGIN_SRC lisp
+  (ql:quickload :dml)			
+  (in-package :dml)
+
+  ;; MG memory game
+  (dml-create-graph "mgdemo-classes" ()
+
+    ;; mgcard class
+    (with-method ("+ initialize"
+		  "+ symbol (Character)"
+		  "+ announcer ()"
+		  "+ flip ()"
+		"+ isFlipped ()"
+		"+ notifyFlipped ()"
+		  "+ disappear ()"
+		  "+ notifyDisappear ()")
+      (full-class "MGCard"
+		  "Object"
+		  (attributes "- symbol : Character"
+			      "- flipped : Boolean"
+			      "- announcer : Announcer"
+			      )))
+
+
+    ;; mggame class
+    (with-method ("+ alpha () : int" "+ beta () : float")
+      (full-class "MGGame"))
+
+    ;; mggameelement class
+    (with-method ("+ alpha () : int" "+ beta () : float")
+      (full-class "MGGameElement"))
+
+
+
+
+    (full-class "MGCard")
+    (with-method ("+ top () : middle" "+ bottom () : Side")
+      (-genby-*
+       (full-class "OS"
+		   "abstract"
+		   (attributes "- name : String"
+			       "- born : Date"))
+       (full-class "Linux")
+       (full-class "Android")
+       (full-class "Apple")
+       (full-class "Windows"))
+      (-dep- "from"
+	     (@name "Android")
+	     (@name"Linux"))))
+
+#+END_SRC	   
+
+#+RESULTS:
+: NIL
+
+file:mgdemo-classes.png
+
+
+
