@@ -107,6 +107,25 @@ ZZFooBar compile: 'hello3 ^ 3' classified: 'magic number3'.
 how do we delete a method (or remove it )
 or really how do we intercept what messages are causing things to actually happen ?
 
+Smalltalk removeClassNamed: #ZZFooBar.
+str := 'Object << #ZZFooBar
+	layout: FixedLayout;
+	traits: {};
+	slots: { #cow . #milk };
+	sharedVariables: {};
+	sharedPools: {};
+	tag: '''' ;
+	package: ''ZZPackage'' '.
+ClySystemEnvironment currentImage compileANewClassFrom: str notifying: nil startingFrom: nil . 
+ZZFooBar compile: 'hello1 ^ 1' classified: 'magic number'.
+ZZFooBar compile: 'hello2 ^ 2' classified: 'magic number'.
+ZZFooBar compile: 'hello3 ^ 3' classified: 'odd number'.
+
+
+how do we add a class side method ?
+
+
+
 
 ============================================================================
 
