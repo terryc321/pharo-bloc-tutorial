@@ -32,15 +32,6 @@ Smalltalk classInstaller
 (Smalltalk at: #ZZFooBar) compile: 'hello20 ^ 22' classified: 'magic number3'. 
 #+END_SRC
 
-** change classification of a method
-
-
-#+BEGIN_SRC smalltalk
-"Inspect the class"
-(Smalltalk at: #ZZFooBar) inspect. 
-#+END_SRC
-
-
 ** create a class side method
 the message class returns the metaclass of receiver, in this case ZZFooBar class
 #+BEGIN_SRC smalltalk
@@ -48,11 +39,12 @@ the message class returns the metaclass of receiver, in this case ZZFooBar class
 #+END_SRC
 
 
-** install a new method hello - this time return 123
+** overwrite existing method
+if hello method exists then compiling a new definition will overwrite old one
+- may be cases where do not want this to happen
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) compile: 'hello ^ 123' classified: 'magic number3'. 
 #+END_SRC
-
 
 ** get a list of instance side methods 
 #+BEGIN_SRC smalltalk
@@ -62,21 +54,6 @@ the message class returns the metaclass of receiver, in this case ZZFooBar class
 ** get a list of class side methods  
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) class selectors
-#+END_SRC
-
-** List all 
-pharo -ok : squeak - fails
-#+BEGIN_SRC smalltalk
-(Smalltalk at: #ZZFooBar) methods do: [ :method |
-    Transcript
-        show: 'Selector: ', method selector asString;
-        show: ' | Protocol: ', method protocolName asString;
-        show: ' | Source: ', method sourceCode;
-        cr
-]
-#+END_SRC
-
-#+BEGIN_SRC smalltalk
 #+END_SRC
 
 ** List methods defined in just this class - not inheritance chain
@@ -105,7 +82,7 @@ squeak - fails
 
 
 
-** List all methods of a class - including inheritance chain
+** List all instance methods - including inheritance chain
 squeak - fails
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) allMethods do: [ :method |
@@ -117,20 +94,85 @@ squeak - fails
 ].
 #+END_SRC
 
-** Rename a method 
-FIXME
+** List all class side methods - including inheritance chain
+squeak - fails
 #+BEGIN_SRC smalltalk
-(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+(Smalltalk at: #ZZFooBar) class allMethods do: [ :method |
     Transcript
         show: 'Selector: ', method selector asString;
         show: ' | Protocol: ', method protocolName asString;
         show: ' | Source: ', method sourceCode;
         cr
 ].
+#+END_SRC
+
+
+** Rename a method 
+FIXME
+#+BEGIN_SRC smalltalk
+| oldName oldMethod newName |
+oldName := #happy .
+oldMethod := (Smalltalk at: #ZZFooBar) methodDict at: oldName.
+newName := #hello.
+(Smalltalk at: #ZZFooBar) 
+    compile: (oldMethod sourceCode copyReplaceAll: (oldName asString) with: newName asString)
+    classified: oldMethod protocolName.
+(Smalltalk at: #ZZFooBar) removeSelector: oldName.
 #+END_SRC
 
 ** Rename a class side method 
 FIXME
+identical to rename an instance method , except add message class between them
+goodbye is both a symbol and a string in this example , depending on needs
+#+BEGIN_SRC smalltalk
+| oldMethod newName |
+oldMethod := (Smalltalk at: #ZZFooBar) class methodDict at: #goodbye.
+newName := #farewell.
+(Smalltalk at: #ZZFooBar) class
+    compile: (oldMethod sourceCode copyReplaceAll: 'goodbye' with: newName asString)
+    classified: oldMethod protocolName.
+(Smalltalk at: #ZZFooBar) class removeSelector: #goodbye.
+#+END_SRC
+
+
+
+** Delete a method 
+delete a method called goodbye
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) removeSelector: #goodbye.
+#+END_SRC
+
+** Delete a class side method
+FIXME
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) class removeSelector: #goodbye.
+#+END_SRC
+
+
+** Delete a class
+#+BEGIN_SRC smalltalk
+Smalltalk removeClassNamed: #ZZFooBar.
+
+[ Smalltalk removeClassNamed: #ZZFooBar ]
+    on: Error do: [ :ex | Transcript show: 'Error deleting class: ', ex messageText; cr ]
+#+END_SRC
+
+** Delete a package
+we had to ask organization , not to be confused with organisation which is different beast
+#+BEGIN_SRC smalltalk
+Smalltalk organization removePackage: #ZZPackage.
+#+END_SRC
+
+** Verify if class exists
+#+BEGIN_SRC smalltalk
+Smalltalk includesKey: #ZZFooBar
+#+END_SRC
+
+* FIXME FIXME FIXME we are upto here FIXME FIX ME
+
+** Create an instance side protocol
+FIXME
+not sure if this is worth pursuing but hey..
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) allMethods do: [ :method |
     Transcript
@@ -141,9 +183,7 @@ FIXME
 ].
 #+END_SRC
 
-
-
-** Remove a method 
+** Create an class side protocol
 FIXME
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) allMethods do: [ :method |
@@ -155,7 +195,21 @@ FIXME
 ].
 #+END_SRC
 
-** Remove a class side method
+
+
+** Rename an instance side protocol
+FIXME
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+** Rename a class side protocol
 FIXME
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) allMethods do: [ :method |
@@ -168,7 +222,8 @@ FIXME
 #+END_SRC
 
 
-** Remove a class
+
+** Delete an instance side protocol
 FIXME
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) allMethods do: [ :method |
@@ -179,6 +234,19 @@ FIXME
         cr
 ].
 #+END_SRC
+
+** Delete a class side protocol
+FIXME
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
 
 
 ** List all the protocols 
@@ -198,6 +266,15 @@ if protocol does not yet exist , it is created
     classify: #hello
     under: 'new-protocol'
 #+END_SRC
+
+
+** change classification of a method
+FIXME
+#+BEGIN_SRC smalltalk
+#+END_SRC
+
+
+
 
 #
 #+LATEX_HEADER: \\usepackage{dejavu}\\renewcommand*\\familydefault{\\ttdefault} [[file:dog.jpg]] $\\parbox{5cm}{\\normalfont This text should be displayed to the right of the image above.\\\\ Ideally, this would work for multiple lines, but if it\'s just one long wrapped line, that would be find too.}$
@@ -1047,5 +1124,279 @@ load
 
 file:mgdemo-classes.png
 
+* Bloc graphics
+
+https://github.com/pharo-graphics/Bloc?tab=readme-ov-file
+
+Pharo 14 load this to start using Bloc
+#+BEGIN_SRC	   
+Metacello new
+	baseline: 'Bloc';
+	repository: 'github://pharo-graphics/Bloc:master/src';
+	load
+#+END_SRC	   
+
+
+the baseline for use with projects
+#+BEGIN_SRC	   
+spec baseline: 'Bloc' with: [ spec repository: 'github://pharo-graphics/Bloc:v2.5.0/src' ].
+#+END_SRC	   
+
+** open a window BlSpace 
+
+#+BEGIN_SRC	   
+aSpace := BlSpace new.
+aSpace show.
+
+"Edit the space's properties, like title and size"
+aSpace title: 'Bloc basics'.
+aSpace extent: 800 @ 600.
+#+END_SRC	   
+
+
+** Lets make a rectangle !
+#+BEGIN_SRC
+  aSpace := BlSpace new.
+aSpace show.
+
+"Edit the space's properties, like title and size"
+aSpace title: 'Bloc basics'.
+aSpace extent: 800 @ 600.
+
+
+"Create a red rectangle"
+rectangle := BlElement new 
+	background: Color red; 
+	size: 150 @ 150;
+	yourself.
+	
+"Add it to the space"
+aSpace root addChild: rectangle.
+
+"Update its properties"
+rectangle 
+	background: Color lightBlue;
+	position: 100 @ 100;
+	border: (BlBorder paint: Color blue width: 10).
+
+"Update its properties"
+rectangle 
+	background: Color black;
+	position: 400 @ 100;
+	border: (BlBorder paint: Color red width: 5).
+
+"remove it from the space"
+"aSpace root removeChild: rectangle."
+
+#+END_SRC
+
+
+
+** Lets make a circle
+#+BEGIN_SRC
+circle := BlElement new
+	background: Color blue;
+	geometry: BlCircleGeometry new;
+	size: 80 @ 80;
+	yourself.
+rectangle addChild: circle.
+#+END_SRC
+
+
+** Lets make the circle bigger and play with clipping
+#+BEGIN_SRC
+circle size: 300@300 . 
+rectangle clipChildren: false.
+rectangle clipChildren: true.
+#+END_SRC
+
+
+** we can resize the circle 
+#+BEGIN_SRC
+circle transformDo: [ :builder | builder scaleBy: 1.2 ].
+#+END_SRC
+
+
+** Animate the rectangle
+#+BEGIN_SRC
+"Animate opacity"
+rectangle addAnimation: (BlOpacityAnimation new opacity: 0.5).
+
+"Animate transformations"
+fallAnimation := (BlTransformAnimation translate: 0 @ 200) absolute.
+rectangle addAnimation: fallAnimation.
+climbAnimation := (BlTransformAnimation translate: 0 @ 0) absolute.
+rectangle addAnimation: climbAnimation.
+
+"Create a sequence of animations"
+animationSequence := BlSequentialAnimation withAll: { fallAnimation. climbAnimation }.
+animationSequence beInfinite.
+rectangle addAnimation: animationSequence
+#+END_SRC
+
+
+** handle some events
+#+BEGIN_SRC
+  "Change color on click"
+rectangle addEventHandlerOn: BlClickEvent do: [ :event | event target background: Color lightGray ].
+
+"Animate on hover"
+rectangle 
+	addEventHandlerOn: BlMouseEnterEvent
+	do: [ :event | event target addAnimation: (BlOpacityAnimation new opacity: 0.2) ];
+	addEventHandlerOn: BlMouseLeaveEvent 
+	do: [ :event | event target addAnimation: (BlOpacityAnimation new opacity: 1.0) ] 
+
+#+END_SRC
+
+
+
+* Bloc-Examples
+
+Pharo playing with live objects https://av.tib.eu/media/50551
+
+This package defines the examples for Bloc
+
+** BlMorphicHostExamples
+
+This window is inside the smalltalk window , unlike the BlSpace example above .
+
+[[file:images/BlMorphicHostExamples2.png]]
+
+#+BEGIN_SRC
+  BlMorphicHostExamples new squares .
+#+END_SRC
+
+How do i take a selected region screenshot in linux ? flameshot wow.
+
+
+
+* BlAnimationExamplesTest
+
+#+BEGIN_SRC
+BlAnimationExamplesTest new ballsAnim.
+BlAnimationExamplesTest new bouncingText.
+BlAnimationExamplesTest new sequential.
+#+END_SRC
+
+** ballsAnim
+
+when we run this it does nothing ?
+
+We get a green triangle , we can play the animation .an iconicButtonMorph.
+
+[[file:images/BlAnimationExamples-BallsAnim.png]]
+
+
+#+BEGIN_SRC
+ballsAnim
+	<sampleInstance>
+	<demo>
+
+	| elements animations |
+	animations := OrderedCollection new.
+	elements := OrderedCollection new.
+
+	1 to: 12 do: [ :i |
+		| anElement bounceAnimation colorizeAnimation |
+		anElement :=
+			BlEllipseGeometry new asElement
+			      background: Color white;
+			      position: (i * 10) @ 0;
+			      extent: 50 @ 50;
+			      yourself.
+
+		bounceAnimation :=
+			BlTransformAnimation new
+			      target: anElement;
+			      transformDo: [ :aBuilder |
+				      aBuilder translateBy:
+							0 @ 100 ];
+			      delay: 100 milliSeconds * i;
+			      duration: 2 seconds;
+			      easing: BlEasing bounceOut;
+			      yourself.
+
+		colorizeAnimation :=
+			BlColorTransition new
+			       from: Color white;
+			       to: Color random;
+			       delay: 100 milliSeconds * i;
+			       duration: 1 second;
+			       onStepDo: [ :c | anElement background: c ];
+			       yourself.
+
+		animations addAll: { bounceAnimation. colorizeAnimation }.
+		elements add: anElement ].
+
+	^ self newFrameContainer
+		addChildren: elements;
+		addAnimation: (BlParallelAnimation withAll: animations);
+		yourself
+#+END_SRC
+
+
+newFrameContainer method is 
+
+#+BEGIN_SRC
+newFrameContainer
+
+	^ BlElement new
+		  layout: BlLinearLayout horizontal alignCenter;
+		  constraintsDo: [ :c |
+			  c horizontal matchParent.
+			  c vertical matchParent ];
+		  clipChildren: false;
+		  yourself
+#+END_SRC
+
+
+** Lets make a circle
+#+BEGIN_SRC
+
+#+END_SRC
+
+
+** Lets make a circle
+#+BEGIN_SRC
+
+#+END_SRC
+
+
+** Lets make a circle
+#+BEGIN_SRC
+
+#+END_SRC
+
+
+** Lets make a circle
+#+BEGIN_SRC
+
+#+END_SRC
+
+
+** ** Lets make a circle
+#+BEGIN_SRC
+
+#+END_SRC
+
+
+** Lets make a circle
+#+BEGIN_SRC
+
+#+END_SRC
+
+
+
+** Lets make a circle
+#+BEGIN_SRC
+
+#+END_SRC
+
+
+** Lets make a circle
+#+BEGIN_SRC
+
+#+END_SRC
 
 
