@@ -1,5 +1,10 @@
 
 
+
+#+BEGIN_SRC smalltalk
+#+END_SRC
+
+
 * Saving private ryan
 
 * Dynamic class definition at runtime
@@ -7,10 +12,9 @@
 If we wish to be in Smalltalk tradition everything must be dynamic , imagine we had to code entirely
 new graphical user interface.
 
-** verified that code is straight-through after classInstaller returns , the class is actually viable
-
+** make a class 
+pharo - ok : squeak - fails
 #+BEGIN_SRC smalltalk
-
 Smalltalk classInstaller
     make: [ :builder |
         builder
@@ -20,25 +24,49 @@ Smalltalk classInstaller
             classSlots: #();
             sharedPools: '';
             package: 'ZZPackage' ].
+#+END_SRC
 
-"Make a method called hello4 in category magic number3 on class ZZFooBar "
-(Smalltalk at: #ZZFooBar) compile: 'hello ^ 3' classified: 'magic number3'. 
+** add a method with 
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) compile: 'hello10 ^ 11' classified: nil. 
+(Smalltalk at: #ZZFooBar) compile: 'hello20 ^ 22' classified: 'magic number3'. 
+#+END_SRC
 
+** change classification of a method
+
+
+#+BEGIN_SRC smalltalk
 "Inspect the class"
 (Smalltalk at: #ZZFooBar) inspect. 
+#+END_SRC
 
-"create a class side method . message class returns the metaclass of receiver, in this case ZZFooBar class"
+
+** create a class side method
+the message class returns the metaclass of receiver, in this case ZZFooBar class
+#+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) class compile: 'goodbye ^ ''bye bye''' classified: 'magic number3'.
+#+END_SRC
 
-"install a new method hello - this time return 123"
+
+** install a new method hello - this time return 123
+#+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) compile: 'hello ^ 123' classified: 'magic number3'. 
+#+END_SRC
 
-"get a list of instance side methods "
+
+** get a list of instance side methods 
+#+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) selectors
+#+END_SRC
 
-"get a list of class side methods "
+** get a list of class side methods  
+#+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) class selectors
+#+END_SRC
 
+** List all 
+pharo -ok : squeak - fails
+#+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) methods do: [ :method |
     Transcript
         show: 'Selector: ', method selector asString;
@@ -46,11 +74,13 @@ Smalltalk classInstaller
         show: ' | Source: ', method sourceCode;
         cr
 ]
-
 #+END_SRC
 
+#+BEGIN_SRC smalltalk
+#+END_SRC
 
 ** List methods defined in just this class - not inheritance chain
+squeak - fails
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) methods do: [ :method |
     Transcript
@@ -62,6 +92,7 @@ Smalltalk classInstaller
 #+END_SRC
 
 ** List class side methods defined in just this class - not inheritance chain
+squeak - fails
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) class methods do: [ :method |
     Transcript
@@ -75,6 +106,31 @@ Smalltalk classInstaller
 
 
 ** List all methods of a class - including inheritance chain
+squeak - fails
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+** Rename a method 
+FIXME
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+** Rename a class side method 
+FIXME
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) allMethods do: [ :method |
     Transcript
@@ -86,6 +142,62 @@ Smalltalk classInstaller
 #+END_SRC
 
 
+
+** Remove a method 
+FIXME
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+** Remove a class side method
+FIXME
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+
+** Remove a class
+FIXME
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+
+** List all the protocols 
+FIXME what is a protocol ?
+squeak has no organization 
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) organization protocols. "Instance-side protocols"
+(Smalltalk at: #ZZFooBar) class organization protocols. "Class-side protocols"
+#+END_SRC
+
+
+** change protocol under with a method is 
+squeak has no organization
+if protocol does not yet exist , it is created
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) organization
+    classify: #hello
+    under: 'new-protocol'
+#+END_SRC
 
 #
 #+LATEX_HEADER: \\usepackage{dejavu}\\renewcommand*\\familydefault{\\ttdefault} [[file:dog.jpg]] $\\parbox{5cm}{\\normalfont This text should be displayed to the right of the image above.\\\\ Ideally, this would work for multiple lines, but if it\'s just one long wrapped line, that would be find too.}$
