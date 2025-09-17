@@ -1,4 +1,92 @@
 
+
+* Saving private ryan
+
+* Dynamic class definition at runtime
+
+If we wish to be in Smalltalk tradition everything must be dynamic , imagine we had to code entirely
+new graphical user interface.
+
+** verified that code is straight-through after classInstaller returns , the class is actually viable
+
+#+BEGIN_SRC smalltalk
+
+Smalltalk classInstaller
+    make: [ :builder |
+        builder
+            superclass: Object;
+            name: #ZZFooBar2;
+            slots: #(cow milk);
+            classSlots: #();
+            sharedPools: '';
+            package: 'ZZPackage' ].
+
+"Make a method called hello4 in category magic number3 on class ZZFooBar "
+(Smalltalk at: #ZZFooBar) compile: 'hello ^ 3' classified: 'magic number3'. 
+
+"Inspect the class"
+(Smalltalk at: #ZZFooBar) inspect. 
+
+"create a class side method . message class returns the metaclass of receiver, in this case ZZFooBar class"
+(Smalltalk at: #ZZFooBar) class compile: 'goodbye ^ ''bye bye''' classified: 'magic number3'.
+
+"install a new method hello - this time return 123"
+(Smalltalk at: #ZZFooBar) compile: 'hello ^ 123' classified: 'magic number3'. 
+
+"get a list of instance side methods "
+(Smalltalk at: #ZZFooBar) selectors
+
+"get a list of class side methods "
+(Smalltalk at: #ZZFooBar) class selectors
+
+(Smalltalk at: #ZZFooBar) methods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+]
+
+#+END_SRC
+
+
+** List methods defined in just this class - not inheritance chain
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) methods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+** List class side methods defined in just this class - not inheritance chain
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) class methods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+
+
+** List all methods of a class - including inheritance chain
+#+BEGIN_SRC smalltalk
+(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+#+END_SRC
+
+
+
 #
 #+LATEX_HEADER: \\usepackage{dejavu}\\renewcommand*\\familydefault{\\ttdefault} [[file:dog.jpg]] $\\parbox{5cm}{\\normalfont This text should be displayed to the right of the image above.\\\\ Ideally, this would work for multiple lines, but if it\'s just one long wrapped line, that would be find too.}$
 
@@ -9,6 +97,27 @@ Be able to wield the full power of Smalltalk through the language completely wit
 Allows me to be able to save a text file and paste into playground and run !
 
 #+BEGIN_SRC smalltalk
+
+=============================================================================================
+
+
+
+firstly open up any smalltalk image - first thing to do is save image as another name
+this is because smalltalk insists on everything being mutable and saves randomly
+so in order to keep original image clean we save as soon as startup
+tried making certain files read only but corrupted ide programming interface
+
+rule 1 : save a new image on start fresh image
+
+configure pharo14.1 to start dirty image
+configure pharo14 to start a clean development image
+
+===========================================================================================
+
+rule 2 : 
+
+===========================================================================================
+
 "where-ever I say GT , I mean Glamorous Toolkit"
 
 "topic : closures"
@@ -85,6 +194,29 @@ str := 'Object << #ZZFooBar
 	package: ''ZZPackage'' '.
 ClySystemEnvironment currentImage compileANewClassFrom: str notifying: nil startingFrom: nil . 
 
+A cheaper alternative to use Smalltalk classInstaller which didnt even know existed ! grok ftw !
+
+Smalltalk classInstaller
+    make: [ :builder |
+        builder
+            superclass: Object;
+            name: #ZZFooBar;
+            slots: #(cow milk);
+            classSlots: #();
+            sharedPools: '';
+            package: 'ZZPackage' ].
+
+
+we can inspect the class
+(Smalltalk at: #ZZFooBar) inspect. "Inspect the class"
+
+ZZFooBar compile: 'hello3 ^ 3' classified: 'magic number3'. 
+
+(Smalltalk at: #ZZFooBar) instVarNames. "Returns #(#cow #milk)"
+(Smalltalk at: #ZZFooBar) package name. "Returns 'ZZPackage'"
+
+(Smalltalk at: #ZZFooBar) instVarNames. "Returns #(#cow #milk)"
+(Smalltalk at: #ZZFooBar) package name. "Returns 'ZZPackage'"
 
 "we added class side method test "
 test
@@ -102,6 +234,22 @@ ClassDescription >> #compile: sourceCode classified: protocol
 we can now compile a method 
 
 ZZFooBar compile: 'hello3 ^ 3' classified: 'magic number3'. 
+============================================================================
+Now for the class side we can see if we can get hold of ZZFooBar 's meta-class -
+that should be the class side ?
+
+
+str := 'Object << #ZZFooBar
+	layout: FixedLayout;
+	traits: {};
+	slots: { #cow . #milk };
+	sharedVariables: {};
+	sharedPools: {};
+	tag: '''' ;
+	package: ''ZZPackage'' '.
+ClySystemEnvironment currentImage compileANewClassFrom: str notifying: nil startingFrom: nil . 
+
+
 
 ============================================================================
 how do we delete a method (or remove it )
