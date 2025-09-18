@@ -1,4 +1,21 @@
 
+* Motivating example - make a bouncing ball game in Bloc
+
+[[file:Breakout-version002.png]]
+
+** Have keyboard input and actions take place when press left / right -- 
+** Build a matrix of coloured bricks ?
+** Have bouncing ball ?
+** Open a window
+** Close a window
+** Get size of window
+** have a title - game score
+** play sound when 
+** Collision detection ?
+** can we add event listening to it ? 
+** can we do move over event ? we have seen that before
+
+
 
 * LATEST
 
@@ -102,20 +119,6 @@ load BlocMemoryTutorial
 - BlKeyCombinationExamplesTest
 
 * Bloc graphical elements   
-
-* Motivating example - make a bouncing ball game in Bloc
-** Have keyboard input and actions take place when press left / right -- 
-** Build a matrix of coloured bricks ?
-** Have bouncing ball ?
-** Open a window
-** Close a window
-** Get size of window
-** have a title - game score
-** play sound when 
-** Collision detection ?
-** can we add event listening to it ? 
-** can we do move over event ? we have seen that before
-
 
 
 

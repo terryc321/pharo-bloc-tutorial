@@ -1,0 +1,2588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-19 Fri 00:17 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="terry" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga17cae3">1. Motivating example - make a bouncing ball game in Bloc</a>
+<ul>
+<li><a href="#orgae52111">1.1. Have keyboard input and actions take place when press left / right --</a></li>
+<li><a href="#org555fefc">1.2. Build a matrix of coloured bricks ?</a></li>
+<li><a href="#orgd99b448">1.3. Have bouncing ball ?</a></li>
+<li><a href="#org468324f">1.4. Open a window</a></li>
+<li><a href="#org902cf62">1.5. Close a window</a></li>
+<li><a href="#org6e6f041">1.6. Get size of window</a></li>
+<li><a href="#orgb97b1ba">1.7. have a title - game score</a></li>
+<li><a href="#orgbc3b815">1.8. play sound when</a></li>
+<li><a href="#org37b6238">1.9. Collision detection ?</a></li>
+<li><a href="#orgfa80128">1.10. can we add event listening to it ?</a></li>
+<li><a href="#org437de25">1.11. can we do move over event ? we have seen that before</a></li>
+</ul>
+</li>
+<li><a href="#orgbdc2029">2. LATEST</a></li>
+<li><a href="#orgfbebeeb">3. Kill inspectors</a></li>
+<li><a href="#org64fbd3f">4. Keyboard event handling</a></li>
+<li><a href="#org0dd4f77">5. Mouse event handling</a></li>
+<li><a href="#org63e1a8c">6. Spec</a></li>
+<li><a href="#org96a672d">7. Spec2</a></li>
+<li><a href="#org0e3310c">8. GT World</a></li>
+<li><a href="#orgc09fbd7">9. Toplo</a></li>
+<li><a href="#orgba0cb0c">10. Roassal</a></li>
+<li><a href="#org62e9159">11. Coypu</a></li>
+<li><a href="#org2556dfb">12. TinyPaint</a></li>
+<li><a href="#org1b8ade4">13. Alexandrie</a></li>
+<li><a href="#org94799e7">14. Bloc</a>
+<ul>
+<li><a href="#org1b24f1d">14.1. Bloc baseline</a></li>
+<li><a href="#orgbe2afa1">14.2. Bloc spec</a>
+<ul>
+<li><a href="#org285c4f6">14.2.1. Bloc tutorial</a></li>
+<li><a href="#org78e6383">14.2.2. KeyLogger</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga585d61">15. Bloc graphical elements</a></li>
+<li><a href="#org4b22452">16. Rectangles</a>
+<ul>
+<li><a href="#orgabb7f09">16.1. And now rotated 45 degrees , this is rotated by top left corner</a></li>
+<li><a href="#org19db229">16.2. solid rotated 45 already at top left</a></li>
+</ul>
+</li>
+<li><a href="#orgdee897c">17. BlAffineTransformationOrigin</a>
+<ul>
+<li><a href="#orge5bffcb">17.1. A hollow rectangle</a></li>
+<li><a href="#org4e11fdc">17.2. rotation about centre</a></li>
+</ul>
+</li>
+<li><a href="#orgc2ec817">18. Bloc tutorial</a></li>
+<li><a href="#org8631e06">19. Bloc graphics</a>
+<ul>
+<li><a href="#org2367845">19.1. open a window BlSpace</a></li>
+<li><a href="#orge400157">19.2. Lets make a rectangle !</a></li>
+<li><a href="#org8fe9c4c">19.3. Lets make a circle</a></li>
+<li><a href="#org61db065">19.4. Lets make the circle bigger and play with clipping</a></li>
+<li><a href="#org50e7d27">19.5. we can resize the circle</a></li>
+<li><a href="#org7d05a71">19.6. Animate the rectangle</a></li>
+<li><a href="#org3dd978b">19.7. handle some events</a></li>
+</ul>
+</li>
+<li><a href="#org13d258d">20. Bloc-Examples</a>
+<ul>
+<li><a href="#orgc06f28f">20.1. BlMorphicHostExamples</a></li>
+</ul>
+</li>
+<li><a href="#orgeb4b9e3">21. BlAnimationExamplesTest</a>
+<ul>
+<li><a href="#org55fda59">21.1. ballsAnim</a></li>
+<li><a href="#org17635df">21.2. Lets draw a line</a></li>
+</ul>
+</li>
+<li><a href="#org308adfb">22. Polygons</a>
+<ul>
+<li><a href="#orgd0bcdf9">22.1. Polygon no fill</a></li>
+<li><a href="#org6733832">22.2. Polygon with fill</a></li>
+<li><a href="#org198e48c">22.3. Polygon with fill</a></li>
+<li><a href="#orgbff8018">22.4. Bezier curve</a></li>
+</ul>
+</li>
+<li><a href="#org9092bd3">23. Saving private ryan</a></li>
+<li><a href="#org713a9c0">24. Dynamic class definition at runtime</a>
+<ul>
+<li><a href="#orga3eb382">24.1. make a class</a></li>
+<li><a href="#orgb5f8af5">24.2. add a method with</a></li>
+<li><a href="#orgc543c05">24.3. create a class side method</a></li>
+<li><a href="#org542e086">24.4. overwrite existing method</a></li>
+<li><a href="#org6e3e69f">24.5. get a list of instance side methods</a></li>
+<li><a href="#org8d15d25">24.6. get a list of class side methods</a></li>
+<li><a href="#org13347dc">24.7. List methods defined in just this class - not inheritance chain</a></li>
+<li><a href="#org3d810ca">24.8. List class side methods defined in just this class - not inheritance chain</a></li>
+<li><a href="#orgba81818">24.9. List all instance methods - including inheritance chain</a></li>
+<li><a href="#org494d331">24.10. List all class side methods - including inheritance chain</a></li>
+<li><a href="#orgc41eb54">24.11. Rename a method</a></li>
+<li><a href="#org7ffb574">24.12. Rename a class side method</a></li>
+<li><a href="#org26c5319">24.13. Delete a method</a></li>
+<li><a href="#org2dd9398">24.14. Delete a class side method</a></li>
+<li><a href="#org4ec48c1">24.15. Delete a class</a></li>
+<li><a href="#org3ad526e">24.16. Delete a package</a></li>
+<li><a href="#org2ddd3b0">24.17. Verify if class exists</a></li>
+</ul>
+</li>
+<li><a href="#orgd08f794">25. FIXME FIXME FIXME we are upto here FIXME FIX ME</a>
+<ul>
+<li><a href="#org7542299">25.1. Create an instance side protocol</a></li>
+<li><a href="#orge465963">25.2. Create an class side protocol</a></li>
+<li><a href="#orga83786e">25.3. Rename an instance side protocol</a></li>
+<li><a href="#org27b329f">25.4. Rename a class side protocol</a></li>
+<li><a href="#orgc7a7956">25.5. Delete an instance side protocol</a></li>
+<li><a href="#orge867e4d">25.6. Delete a class side protocol</a></li>
+<li><a href="#org593aed7">25.7. List all the protocols</a></li>
+<li><a href="#org0c144f9">25.8. change protocol under with a method is</a></li>
+<li><a href="#orga541d0f">25.9. change classification of a method</a></li>
+<li><a href="#org180876d">25.10. Lets make a circle</a></li>
+<li><a href="#orgca18068">25.11. Lets make a circle</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga17cae3" class="outline-2">
+<h2 id="orga17cae3"><span class="section-number-2">1.</span> Motivating example - make a bouncing ball game in Bloc</h2>
+<div class="outline-text-2" id="text-1">
+
+<div id="orgf4450c9" class="figure">
+<p><img src="Breakout-version002.png" alt="Breakout-version002.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgae52111" class="outline-3">
+<h3 id="orgae52111"><span class="section-number-3">1.1.</span> Have keyboard input and actions take place when press left / right --</h3>
+</div>
+<div id="outline-container-org555fefc" class="outline-3">
+<h3 id="org555fefc"><span class="section-number-3">1.2.</span> Build a matrix of coloured bricks ?</h3>
+</div>
+<div id="outline-container-orgd99b448" class="outline-3">
+<h3 id="orgd99b448"><span class="section-number-3">1.3.</span> Have bouncing ball ?</h3>
+</div>
+<div id="outline-container-org468324f" class="outline-3">
+<h3 id="org468324f"><span class="section-number-3">1.4.</span> Open a window</h3>
+</div>
+<div id="outline-container-org902cf62" class="outline-3">
+<h3 id="org902cf62"><span class="section-number-3">1.5.</span> Close a window</h3>
+</div>
+<div id="outline-container-org6e6f041" class="outline-3">
+<h3 id="org6e6f041"><span class="section-number-3">1.6.</span> Get size of window</h3>
+</div>
+<div id="outline-container-orgb97b1ba" class="outline-3">
+<h3 id="orgb97b1ba"><span class="section-number-3">1.7.</span> have a title - game score</h3>
+</div>
+<div id="outline-container-orgbc3b815" class="outline-3">
+<h3 id="orgbc3b815"><span class="section-number-3">1.8.</span> play sound when</h3>
+</div>
+<div id="outline-container-org37b6238" class="outline-3">
+<h3 id="org37b6238"><span class="section-number-3">1.9.</span> Collision detection ?</h3>
+</div>
+<div id="outline-container-orgfa80128" class="outline-3">
+<h3 id="orgfa80128"><span class="section-number-3">1.10.</span> can we add event listening to it ?</h3>
+</div>
+<div id="outline-container-org437de25" class="outline-3">
+<h3 id="org437de25"><span class="section-number-3">1.11.</span> can we do move over event ? we have seen that before</h3>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgbdc2029" class="outline-2">
+<h2 id="orgbdc2029"><span class="section-number-2">2.</span> LATEST</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Currently writing Breakout
+</p>
+
+<p>
+terryc321.github.com/Breakout
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfbebeeb" class="outline-2">
+<h2 id="orgfbebeeb"><span class="section-number-2">3.</span> Kill inspectors</h2>
+<div class="outline-text-2" id="text-3">
+<pre class="example">
+SystemWindow allInstances
+  select: [ :window | 
+    (window model isKindOf: StInspector) or: [ 
+      (window model isKindOf: GTInspector) or: [ 
+        window model isKindOf: Inspector ] ] ]
+  thenDo: [ :window | window delete ]
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org64fbd3f" class="outline-2">
+<h2 id="org64fbd3f"><span class="section-number-2">4.</span> Keyboard event handling</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+see lower down - find keylogger
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0dd4f77" class="outline-2">
+<h2 id="org0dd4f77"><span class="section-number-2">5.</span> Mouse event handling</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+mouse over
+mouse enter
+mouse leave
+click event
+double click event
+drag drop maybe ?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org63e1a8c" class="outline-2">
+<h2 id="org63e1a8c"><span class="section-number-2">6.</span> Spec</h2>
+</div>
+
+<div id="outline-container-org96a672d" class="outline-2">
+<h2 id="org96a672d"><span class="section-number-2">7.</span> Spec2</h2>
+</div>
+
+<div id="outline-container-org0e3310c" class="outline-2">
+<h2 id="org0e3310c"><span class="section-number-2">8.</span> GT World</h2>
+</div>
+
+<div id="outline-container-orgc09fbd7" class="outline-2">
+<h2 id="orgc09fbd7"><span class="section-number-2">9.</span> Toplo</h2>
+</div>
+
+<div id="outline-container-orgba0cb0c" class="outline-2">
+<h2 id="orgba0cb0c"><span class="section-number-2">10.</span> Roassal</h2>
+</div>
+
+<div id="outline-container-org62e9159" class="outline-2">
+<h2 id="org62e9159"><span class="section-number-2">11.</span> Coypu</h2>
+</div>
+
+<div id="outline-container-org2556dfb" class="outline-2">
+<h2 id="org2556dfb"><span class="section-number-2">12.</span> TinyPaint</h2>
+</div>
+
+<div id="outline-container-org1b8ade4" class="outline-2">
+<h2 id="org1b8ade4"><span class="section-number-2">13.</span> Alexandrie</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+This is low level stuff
+</p>
+
+<pre class="example">
+FIXME Does not work !!!
+Metacello new
+    baseline: 'SpartaAlexandrie';
+    repository: 'github://pharo-graphics/Sparta:dev/src';
+    load.
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org94799e7" class="outline-2">
+<h2 id="org94799e7"><span class="section-number-2">14.</span> Bloc</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+Bloc is a low-level UI infrastructure &amp; framework for Pharo.
+</p>
+
+<p>
+<a href="https://github.com/pharo-graphics/Bloc">https://github.com/pharo-graphics/Bloc</a>
+</p>
+</div>
+
+
+<div id="outline-container-org1b24f1d" class="outline-3">
+<h3 id="org1b24f1d"><span class="section-number-3">14.1.</span> Bloc baseline</h3>
+<div class="outline-text-3" id="text-14-1">
+<p>
+The baseline for bloc is 
+</p>
+
+<pre class="example">
+Metacello new
+        baseline: 'Bloc';
+        repository: 'github://pharo-graphics/Bloc:master/src';
+        load
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgbe2afa1" class="outline-3">
+<h3 id="orgbe2afa1"><span class="section-number-3">14.2.</span> Bloc spec</h3>
+<div class="outline-text-3" id="text-14-2">
+<p>
+The spec for bloc is
+</p>
+
+<p>
+How do we use spec again ?
+</p>
+
+<pre class="example">
+spec baseline: 'Bloc' with: [ spec repository: 'github://pharo-graphics/Bloc:v2.5.0/src' ].
+</pre>
+</div>
+
+<div id="outline-container-org285c4f6" class="outline-4">
+<h4 id="org285c4f6"><span class="section-number-4">14.2.1.</span> Bloc tutorial</h4>
+<div class="outline-text-4" id="text-14-2-1">
+<p>
+This a memory card game written in Bloc , whats most useful is it comes with some ready to use examples 
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">Metacello new
+          baseline: 'BlocMemoryTutorial';
+          repository: 'github://pharo-graphics/Bloc-Memory-Tutorial/src';
+          load
+
+"MG Memory Game "
+MGGame withEmoji .
+MGGameElement openWithNumber .
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org78e6383" class="outline-4">
+<h4 id="org78e6383"><span class="section-number-4">14.2.2.</span> KeyLogger</h4>
+<div class="outline-text-4" id="text-14-2-2">
+<p>
+load BlocMemoryTutorial
+</p>
+
+<ul class="org-ul">
+<li>BlKeyCombinationExamplesTest</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga585d61" class="outline-2">
+<h2 id="orga585d61"><span class="section-number-2">15.</span> Bloc graphical elements</h2>
+</div>
+
+
+
+
+
+<div id="outline-container-org4b22452" class="outline-2">
+<h2 id="org4b22452"><span class="section-number-2">16.</span> Rectangles</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+Lets start with a rectangle
+</p>
+
+<p>
+Its easiest to have a filled rectangle
+</p>
+<pre class="example">
+demoRectangle
+&lt;demo&gt;
+&lt;sampleInstance&gt;
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        background: Color red ;
+        position: 200 @ 100 ; 
+        size: 150 @ 150;
+        yourself.
+^ rectangle.
+</pre>
+</div>
+
+
+
+
+
+
+
+<div id="outline-container-orgabb7f09" class="outline-3">
+<h3 id="orgabb7f09"><span class="section-number-3">16.1.</span> And now rotated 45 degrees , this is rotated by top left corner</h3>
+<div class="outline-text-3" id="text-16-1">
+<pre class="example">
+demoRectangle2
+&lt;demo&gt;
+&lt;sampleInstance&gt;
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        background: Color black ;
+        position: 200 @ 100 ; 
+        size: 150 @ 150;
+        transformDo: [ :t | t rotateBy: 45 ] ;
+        yourself.
+^ rectangle.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org19db229" class="outline-3">
+<h3 id="org19db229"><span class="section-number-3">16.2.</span> solid rotated 45 already at top left</h3>
+<div class="outline-text-3" id="text-16-2">
+<p>
+expect some of the rectangle to be clipped as some of it will be off screen
+</p>
+
+<pre class="example">
+demoRectangle4
+&lt;demo&gt;
+&lt;sampleInstance&gt;
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        background: Color black ;
+        position: 0 @ 0 ; 
+        size: 150 @ 150;
+        transformDo: [ :t | t rotateBy: 45 ] ;
+        yourself.
+^ rectangle.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdee897c" class="outline-2">
+<h2 id="orgdee897c"><span class="section-number-2">17.</span> BlAffineTransformationOrigin</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+BlAffineTransformationTopLeftOrigin ?
+BlAffineTransformationLeftCentreOrigin ?
+BlRotationTransformation ?
+</p>
+</div>
+
+<div id="outline-container-orge5bffcb" class="outline-3">
+<h3 id="orge5bffcb"><span class="section-number-3">17.1.</span> A hollow rectangle</h3>
+<div class="outline-text-3" id="text-17-1">
+<pre class="example">
+demoRectangle5
+&lt;demo&gt;
+&lt;sampleInstance&gt;
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        border: (BlBorder paint: Color black width: 2);
+        position: 0 @ 0 ; 
+        size: 150 @ 150;
+        transformDo: [ :t |
+            t origin: (BlAffineTransformationTopLeftOrigin new); 
+            rotateBy: 45 ] ;
+        yourself.
+^ rectangle.
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org4e11fdc" class="outline-3">
+<h3 id="org4e11fdc"><span class="section-number-3">17.2.</span> rotation about centre</h3>
+<div class="outline-text-3" id="text-17-2">
+<pre class="example">
+demoRectangle3
+&lt;demo&gt;
+&lt;sampleInstance&gt;
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        border: (BlBorder paint: Color black width: 2);
+        position: 200 @ 100 ; 
+        size: 150 @ 150;
+        transformDo: [ :t | t rotateBy: 45 ] ;
+        yourself.
+
+rectangle transformDo: [ :t | 
+    t origin: (BlAffineTransformationCenterOrigin new); 
+    rotateBy: 45 ].
+^ rectangle.
+</pre>
+
+
+
+<p>
+&lt;sampleInstance&gt; pragma makes Pharo aware this is a graphical element
+and can be displayed. This lets Pharo place a green play button on
+system browser to mean click this and see it on screen.
+</p>
+
+<p>
+&lt;demo&gt; pragma makes Pharo aware this is a demo -?
+</p>
+
+
+<p>
+This is a filled rectangle 150,150 in size
+</p>
+<pre class="example">
+demoRectangle2
+&lt;sampleInstance&gt;
+&lt;demo&gt;
+"Create a red rectangle"
+|rectangle|
+rectangle := BlElement new 
+        background: Color red;  "putting background to a color makes it filled"
+        size: 150 @ 150;
+        yourself.
+^ rectangle.
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgc2ec817" class="outline-2">
+<h2 id="orgc2ec817"><span class="section-number-2">18.</span> Bloc tutorial</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+This a memory card game written in Bloc , not sure if it makes sense.
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">Metacello new
+          baseline: 'BlocMemoryTutorial';
+          repository: 'github://pharo-graphics/Bloc-Memory-Tutorial/src';
+          load
+
+MGGame withEmoji .
+
+MGGameElement openWithNumber .
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8631e06" class="outline-2">
+<h2 id="org8631e06"><span class="section-number-2">19.</span> Bloc graphics</h2>
+<div class="outline-text-2" id="text-19">
+<p>
+<a href="https://github.com/pharo-graphics/Bloc?tab=readme-ov-file">https://github.com/pharo-graphics/Bloc?tab=readme-ov-file</a>
+</p>
+
+<p>
+Pharo 14 load this to start using Bloc
+</p>
+<pre class="example">
+Metacello new
+        baseline: 'Bloc';
+        repository: 'github://pharo-graphics/Bloc:master/src';
+        load
+</pre>
+
+
+<p>
+the baseline for use with projects
+</p>
+<pre class="example">
+spec baseline: 'Bloc' with: [ spec repository: 'github://pharo-graphics/Bloc:v2.5.0/src' ].
+</pre>
+</div>
+
+<div id="outline-container-org2367845" class="outline-3">
+<h3 id="org2367845"><span class="section-number-3">19.1.</span> open a window BlSpace</h3>
+<div class="outline-text-3" id="text-19-1">
+<pre class="example">
+aSpace := BlSpace new.
+aSpace show.
+
+"Edit the space's properties, like title and size"
+aSpace title: 'Bloc basics'.
+aSpace extent: 800 @ 600.
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orge400157" class="outline-3">
+<h3 id="orge400157"><span class="section-number-3">19.2.</span> Lets make a rectangle !</h3>
+<div class="outline-text-3" id="text-19-2">
+<pre class="example">
+  aSpace := BlSpace new.
+aSpace show.
+
+"Edit the space's properties, like title and size"
+aSpace title: 'Bloc basics'.
+aSpace extent: 800 @ 600.
+
+
+"Create a red rectangle"
+rectangle := BlElement new 
+        background: Color red; 
+        size: 150 @ 150;
+        yourself.
+
+"Add it to the space"
+aSpace root addChild: rectangle.
+
+"Update its properties"
+rectangle 
+        background: Color lightBlue;
+        position: 100 @ 100;
+        border: (BlBorder paint: Color blue width: 10).
+
+"Update its properties"
+rectangle 
+        background: Color black;
+        position: 400 @ 100;
+        border: (BlBorder paint: Color red width: 5).
+
+"remove it from the space"
+"aSpace root removeChild: rectangle."
+
+</pre>
+</div>
+</div>
+
+
+
+<div id="outline-container-org8fe9c4c" class="outline-3">
+<h3 id="org8fe9c4c"><span class="section-number-3">19.3.</span> Lets make a circle</h3>
+<div class="outline-text-3" id="text-19-3">
+<pre class="example">
+circle := BlElement new
+        background: Color blue;
+        geometry: BlCircleGeometry new;
+        size: 80 @ 80;
+        yourself.
+rectangle addChild: circle.
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org61db065" class="outline-3">
+<h3 id="org61db065"><span class="section-number-3">19.4.</span> Lets make the circle bigger and play with clipping</h3>
+<div class="outline-text-3" id="text-19-4">
+<pre class="example">
+circle size: 300@300 . 
+rectangle clipChildren: false.
+rectangle clipChildren: true.
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org50e7d27" class="outline-3">
+<h3 id="org50e7d27"><span class="section-number-3">19.5.</span> we can resize the circle</h3>
+<div class="outline-text-3" id="text-19-5">
+<pre class="example">
+circle transformDo: [ :builder | builder scaleBy: 1.2 ].
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org7d05a71" class="outline-3">
+<h3 id="org7d05a71"><span class="section-number-3">19.6.</span> Animate the rectangle</h3>
+<div class="outline-text-3" id="text-19-6">
+<pre class="example">
+"Animate opacity"
+rectangle addAnimation: (BlOpacityAnimation new opacity: 0.5).
+
+"Animate transformations"
+fallAnimation := (BlTransformAnimation translate: 0 @ 200) absolute.
+rectangle addAnimation: fallAnimation.
+climbAnimation := (BlTransformAnimation translate: 0 @ 0) absolute.
+rectangle addAnimation: climbAnimation.
+
+"Create a sequence of animations"
+animationSequence := BlSequentialAnimation withAll: { fallAnimation. climbAnimation }.
+animationSequence beInfinite.
+rectangle addAnimation: animationSequence
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org3dd978b" class="outline-3">
+<h3 id="org3dd978b"><span class="section-number-3">19.7.</span> handle some events</h3>
+<div class="outline-text-3" id="text-19-7">
+<pre class="example">
+  "Change color on click"
+rectangle addEventHandlerOn: BlClickEvent do: [ :event | event target background: Color lightGray ].
+
+"Animate on hover"
+rectangle 
+        addEventHandlerOn: BlMouseEnterEvent
+        do: [ :event | event target addAnimation: (BlOpacityAnimation new opacity: 0.2) ];
+        addEventHandlerOn: BlMouseLeaveEvent 
+        do: [ :event | event target addAnimation: (BlOpacityAnimation new opacity: 1.0) ] 
+
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org13d258d" class="outline-2">
+<h2 id="org13d258d"><span class="section-number-2">20.</span> Bloc-Examples</h2>
+<div class="outline-text-2" id="text-20">
+<p>
+Pharo playing with live objects <a href="https://av.tib.eu/media/50551">https://av.tib.eu/media/50551</a>
+</p>
+
+<p>
+This package defines the examples for Bloc
+</p>
+</div>
+
+<div id="outline-container-orgc06f28f" class="outline-3">
+<h3 id="orgc06f28f"><span class="section-number-3">20.1.</span> BlMorphicHostExamples</h3>
+<div class="outline-text-3" id="text-20-1">
+<p>
+This window is inside the smalltalk window , unlike the BlSpace example above .
+</p>
+
+
+<div id="org190231f" class="figure">
+<p><img src="images/BlMorphicHostExamples2.png" alt="BlMorphicHostExamples2.png" />
+</p>
+</div>
+
+<pre class="example">
+BlMorphicHostExamples new squares .
+</pre>
+
+<p>
+How do i take a selected region screenshot in linux ? flameshot wow.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgeb4b9e3" class="outline-2">
+<h2 id="orgeb4b9e3"><span class="section-number-2">21.</span> BlAnimationExamplesTest</h2>
+<div class="outline-text-2" id="text-21">
+<pre class="example">
+BlAnimationExamplesTest new ballsAnim.
+BlAnimationExamplesTest new bouncingText.
+BlAnimationExamplesTest new sequential.
+</pre>
+</div>
+
+<div id="outline-container-org55fda59" class="outline-3">
+<h3 id="org55fda59"><span class="section-number-3">21.1.</span> ballsAnim</h3>
+<div class="outline-text-3" id="text-21-1">
+<p>
+when we run this it does nothing ?
+</p>
+
+<p>
+We get a green triangle , we can play the animation .an iconicButtonMorph.
+</p>
+
+
+<div id="org8952204" class="figure">
+<p><img src="images/BlAnimationExamples-BallsAnim.png" alt="BlAnimationExamples-BallsAnim.png" />
+</p>
+</div>
+
+<p>
+two pragmas 
+</p>
+
+<pre class="example">
+
+
+ballsAnim
+"&lt;sampleInstance&gt;"
+"&lt;demo&gt;"
+    | elements animations |
+        animations := OrderedCollection new.
+        elements := OrderedCollection new.
+
+        1 to: 12 do: [ :i |
+                | anElement bounceAnimation colorizeAnimation |
+                anElement :=
+                        BlEllipseGeometry new asElement
+                              background: Color white;
+                              position: (i * 10) @ 0;
+                              extent: 50 @ 50;
+                              yourself.
+
+                bounceAnimation :=
+                        BlTransformAnimation new
+                              target: anElement;
+                              transformDo: [ :aBuilder |
+                                      aBuilder translateBy:
+                                                        0 @ 100 ];
+                              delay: 100 milliSeconds * i;
+                              duration: 2 seconds;
+                              easing: BlEasing bounceOut;
+                              yourself.
+
+                colorizeAnimation :=
+                        BlColorTransition new
+                               from: Color white;
+                               to: Color random;
+                               delay: 100 milliSeconds * i;
+                               duration: 1 second;
+                               onStepDo: [ :c | anElement background: c ];
+                               yourself.
+
+                animations addAll: { bounceAnimation. colorizeAnimation }.
+                elements add: anElement ].
+
+        ^ self newFrameContainer
+                addChildren: elements;
+                addAnimation: (BlParallelAnimation withAll: animations);
+                yourself
+</pre>
+
+
+<p>
+newFrameContainer method is 
+</p>
+
+<pre class="example">
+newFrameContainer
+
+        ^ BlElement new
+                  layout: BlLinearLayout horizontal alignCenter;
+                  constraintsDo: [ :c |
+                          c horizontal matchParent.
+                          c vertical matchParent ];
+                  clipChildren: false;
+                  yourself
+</pre>
+</div>
+</div>
+
+
+
+<div id="outline-container-org17635df" class="outline-3">
+<h3 id="org17635df"><span class="section-number-3">21.2.</span> Lets draw a line</h3>
+<div class="outline-text-3" id="text-21-2">
+<p>
+This works and draws a red line 
+</p>
+<pre class="example">
+| space lineElement |
+
+"Create a BlElement with BlLineGeometry"
+lineElement := BlElement new
+    geometry: (BlLineGeometry from: 50@50 to: 200@200);
+    border: (BlBorder paint: Color green width: 20);
+    yourself.
+
+"Set up the space"
+space := BlSpace new. 
+    space root addChild: lineElement;
+    extent: 400@300;
+    yourself.
+
+space show.	
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org308adfb" class="outline-2">
+<h2 id="org308adfb"><span class="section-number-2">22.</span> Polygons</h2>
+<div class="outline-text-2" id="text-22">
+</div>
+<div id="outline-container-orgd0bcdf9" class="outline-3">
+<h3 id="orgd0bcdf9"><span class="section-number-3">22.1.</span> Polygon no fill</h3>
+<div class="outline-text-3" id="text-22-1">
+<p>
+some weird looking polygon 
+</p>
+<pre class="example">
+  | space polygonElement vertices |
+
+"Define the vertices for a pentagon"
+vertices := { 
+    100@50.  "Top"
+    150@100. "Right-top"
+    130@150. "Right-bottom"
+    70@150.  "Left-bottom"
+    50@100   "Left-top"
+}.
+
+"Create a BlElement with BlPolygonGeometry"
+polygonElement := BlElement new
+    geometry: (BlPolygonGeometry vertices: vertices);
+    border: (BlBorder paint: Color red width: 3);
+    background: Color transparent; "Ensure no fill"
+    yourself.
+
+"Set up the space"
+space := BlSpace new.
+    space root addChild: polygonElement;
+    extent: 400@300;
+    yourself.
+
+space show. 
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org6733832" class="outline-3">
+<h3 id="org6733832"><span class="section-number-3">22.2.</span> Polygon with fill</h3>
+<div class="outline-text-3" id="text-22-2">
+<p>
+Defines a space [a window opens separately]
+</p>
+<pre class="example">
+| space polygonElement vertices |
+
+"Define the vertices for a pentagon"
+vertices := { 
+    100@50.  "Top"
+    150@100. "Right-top"
+    130@150. "Right-bottom"
+    70@150.  "Left-bottom"
+    50@100   "Left-top"
+}.
+
+"Create a BlElement with BlPolygonGeometry and fill"
+polygonElement := BlElement new
+    geometry: (BlPolygonGeometry vertices: vertices);
+    background: Color red; "Fill color"
+    border: (BlBorder paint: Color black width: 2); "Optional outline"
+    yourself.
+
+"Set up the space"
+space := BlSpace new.
+    space root addChild: polygonElement;
+    extent: 400@300;
+    yourself.
+
+space show.
+
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org198e48c" class="outline-3">
+<h3 id="org198e48c"><span class="section-number-3">22.3.</span> Polygon with fill</h3>
+<div class="outline-text-3" id="text-22-3">
+<p>
+just describes the polygon element itself , no space window
+yet we get a green icon we can click , pharo 14 dev will create a window for us and place
+filled polygon into it
+</p>
+<pre class="example">
+demoLine
+&lt;sampleInstance&gt;
+&lt;demo&gt;   
+| polygonElement vertices |
+
+"Define the vertices for a pentagon"
+vertices := { 
+    100@50.  "Top"
+    150@100. "Right-top"
+    130@150. "Right-bottom"
+    70@150.  "Left-bottom"
+    50@100   "Left-top"
+}.
+
+"Create a BlElement with BlPolygonGeometry and fill"
+polygonElement := BlElement new
+    geometry: (BlPolygonGeometry vertices: vertices);
+    background: Color red; "Fill color"
+    border: (BlBorder paint: Color black width: 2); "Optional outline"
+    yourself.
+
+^ polygonElement.
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgbff8018" class="outline-3">
+<h3 id="orgbff8018"><span class="section-number-3">22.4.</span> Bezier curve</h3>
+<div class="outline-text-3" id="text-22-4">
+<p>
+openInWindow method 
+</p>
+<pre class="example">
+
+| p0 p1 p2 p3 canvas elem |
+p0 := 20@140.
+p1 := 120@20.
+p2 := 280@220.
+p3 := 360@60.
+
+elem := BlElement new
+    size: 400@250;
+    background: Color white;
+    yourself.
+
+elem onPaint: [ :c |
+    c path
+        moveTo: p0;
+        bezierVia: p1 and: p2 to: p3;
+        stroke: (Color black width: 3).
+
+    "Control lines"
+    c path
+        moveTo: p0; lineTo: p1;
+        stroke: (Color gray width: 1).
+    c path
+        moveTo: p3; lineTo: p2;
+        stroke: (Color gray width: 1).
+
+    "Control points"
+    {p0. p1. p2. p3} do: [:pt |
+        c fillRectangle: (pt extent: 6@6) color: Color red ] ].
+
+elem openInWindow
+</pre>
+
+
+
+
+
+
+<p>
+<code>==========================================================================================</code>
+</p>
+
+
+
+<div class="org-src-container">
+<pre class="src src-smalltalk">
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org9092bd3" class="outline-2">
+<h2 id="org9092bd3"><span class="section-number-2">23.</span> Saving private ryan</h2>
+</div>
+
+<div id="outline-container-org713a9c0" class="outline-2">
+<h2 id="org713a9c0"><span class="section-number-2">24.</span> Dynamic class definition at runtime</h2>
+<div class="outline-text-2" id="text-24">
+<p>
+If we wish to be in Smalltalk tradition everything must be dynamic , imagine we had to code entirely
+new graphical user interface.
+</p>
+</div>
+
+<div id="outline-container-orga3eb382" class="outline-3">
+<h3 id="orga3eb382"><span class="section-number-3">24.1.</span> make a class</h3>
+<div class="outline-text-3" id="text-24-1">
+<p>
+pharo - ok : squeak - fails
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">Smalltalk classInstaller
+    make: [ :builder |
+        builder
+            superclass: Object;
+            name: #ZZFooBar2;
+            slots: #(cow milk);
+            classSlots: #();
+            sharedPools: '';
+            package: 'ZZPackage' ].
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgb5f8af5" class="outline-3">
+<h3 id="orgb5f8af5"><span class="section-number-3">24.2.</span> add a method with</h3>
+<div class="outline-text-3" id="text-24-2">
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) compile: 'hello10 ^ 11' classified: nil. 
+(Smalltalk at: #ZZFooBar) compile: 'hello20 ^ 22' classified: 'magic number3'. 
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc543c05" class="outline-3">
+<h3 id="orgc543c05"><span class="section-number-3">24.3.</span> create a class side method</h3>
+<div class="outline-text-3" id="text-24-3">
+<p>
+the message class returns the metaclass of receiver, in this case ZZFooBar class
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) class compile: 'goodbye ^ ''bye bye''' classified: 'magic number3'.
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org542e086" class="outline-3">
+<h3 id="org542e086"><span class="section-number-3">24.4.</span> overwrite existing method</h3>
+<div class="outline-text-3" id="text-24-4">
+<p>
+if hello method exists then compiling a new definition will overwrite old one
+</p>
+<ul class="org-ul">
+<li>may be cases where do not want this to happen</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) compile: 'hello ^ 123' classified: 'magic number3'. 
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6e3e69f" class="outline-3">
+<h3 id="org6e3e69f"><span class="section-number-3">24.5.</span> get a list of instance side methods</h3>
+<div class="outline-text-3" id="text-24-5">
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) selectors
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8d15d25" class="outline-3">
+<h3 id="org8d15d25"><span class="section-number-3">24.6.</span> get a list of class side methods</h3>
+<div class="outline-text-3" id="text-24-6">
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) class selectors
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org13347dc" class="outline-3">
+<h3 id="org13347dc"><span class="section-number-3">24.7.</span> List methods defined in just this class - not inheritance chain</h3>
+<div class="outline-text-3" id="text-24-7">
+<p>
+squeak - fails
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) methods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d810ca" class="outline-3">
+<h3 id="org3d810ca"><span class="section-number-3">24.8.</span> List class side methods defined in just this class - not inheritance chain</h3>
+<div class="outline-text-3" id="text-24-8">
+<p>
+squeak - fails
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) class methods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgba81818" class="outline-3">
+<h3 id="orgba81818"><span class="section-number-3">24.9.</span> List all instance methods - including inheritance chain</h3>
+<div class="outline-text-3" id="text-24-9">
+<p>
+squeak - fails
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org494d331" class="outline-3">
+<h3 id="org494d331"><span class="section-number-3">24.10.</span> List all class side methods - including inheritance chain</h3>
+<div class="outline-text-3" id="text-24-10">
+<p>
+squeak - fails
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) class allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc41eb54" class="outline-3">
+<h3 id="orgc41eb54"><span class="section-number-3">24.11.</span> Rename a method</h3>
+<div class="outline-text-3" id="text-24-11">
+<p>
+FIXME
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">| oldName oldMethod newName |
+oldName := #happy .
+oldMethod := (Smalltalk at: #ZZFooBar) methodDict at: oldName.
+newName := #hello.
+(Smalltalk at: #ZZFooBar) 
+    compile: (oldMethod sourceCode copyReplaceAll: (oldName asString) with: newName asString)
+    classified: oldMethod protocolName.
+(Smalltalk at: #ZZFooBar) removeSelector: oldName.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7ffb574" class="outline-3">
+<h3 id="org7ffb574"><span class="section-number-3">24.12.</span> Rename a class side method</h3>
+<div class="outline-text-3" id="text-24-12">
+<p>
+FIXME
+identical to rename an instance method , except add message class between them
+goodbye is both a symbol and a string in this example , depending on needs
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">| oldMethod newName |
+oldMethod := (Smalltalk at: #ZZFooBar) class methodDict at: #goodbye.
+newName := #farewell.
+(Smalltalk at: #ZZFooBar) class
+    compile: (oldMethod sourceCode copyReplaceAll: 'goodbye' with: newName asString)
+    classified: oldMethod protocolName.
+(Smalltalk at: #ZZFooBar) class removeSelector: #goodbye.
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org26c5319" class="outline-3">
+<h3 id="org26c5319"><span class="section-number-3">24.13.</span> Delete a method</h3>
+<div class="outline-text-3" id="text-24-13">
+<p>
+delete a method called goodbye
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) removeSelector: #goodbye.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2dd9398" class="outline-3">
+<h3 id="org2dd9398"><span class="section-number-3">24.14.</span> Delete a class side method</h3>
+<div class="outline-text-3" id="text-24-14">
+<p>
+FIXME
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) class removeSelector: #goodbye.
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4ec48c1" class="outline-3">
+<h3 id="org4ec48c1"><span class="section-number-3">24.15.</span> Delete a class</h3>
+<div class="outline-text-3" id="text-24-15">
+<div class="org-src-container">
+<pre class="src src-smalltalk">Smalltalk removeClassNamed: #ZZFooBar.
+
+[ Smalltalk removeClassNamed: #ZZFooBar ]
+    on: Error do: [ :ex | Transcript show: 'Error deleting class: ', ex messageText; cr ]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3ad526e" class="outline-3">
+<h3 id="org3ad526e"><span class="section-number-3">24.16.</span> Delete a package</h3>
+<div class="outline-text-3" id="text-24-16">
+<p>
+we had to ask organization , not to be confused with organisation which is different beast
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">Smalltalk organization removePackage: #ZZPackage.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2ddd3b0" class="outline-3">
+<h3 id="org2ddd3b0"><span class="section-number-3">24.17.</span> Verify if class exists</h3>
+<div class="outline-text-3" id="text-24-17">
+<div class="org-src-container">
+<pre class="src src-smalltalk">Smalltalk includesKey: #ZZFooBar
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd08f794" class="outline-2">
+<h2 id="orgd08f794"><span class="section-number-2">25.</span> FIXME FIXME FIXME we are upto here FIXME FIX ME</h2>
+<div class="outline-text-2" id="text-25">
+</div>
+<div id="outline-container-org7542299" class="outline-3">
+<h3 id="org7542299"><span class="section-number-3">25.1.</span> Create an instance side protocol</h3>
+<div class="outline-text-3" id="text-25-1">
+<p>
+FIXME
+not sure if this is worth pursuing but hey..
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge465963" class="outline-3">
+<h3 id="orge465963"><span class="section-number-3">25.2.</span> Create an class side protocol</h3>
+<div class="outline-text-3" id="text-25-2">
+<p>
+FIXME
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orga83786e" class="outline-3">
+<h3 id="orga83786e"><span class="section-number-3">25.3.</span> Rename an instance side protocol</h3>
+<div class="outline-text-3" id="text-25-3">
+<p>
+FIXME
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org27b329f" class="outline-3">
+<h3 id="org27b329f"><span class="section-number-3">25.4.</span> Rename a class side protocol</h3>
+<div class="outline-text-3" id="text-25-4">
+<p>
+FIXME
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgc7a7956" class="outline-3">
+<h3 id="orgc7a7956"><span class="section-number-3">25.5.</span> Delete an instance side protocol</h3>
+<div class="outline-text-3" id="text-25-5">
+<p>
+FIXME
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge867e4d" class="outline-3">
+<h3 id="orge867e4d"><span class="section-number-3">25.6.</span> Delete a class side protocol</h3>
+<div class="outline-text-3" id="text-25-6">
+<p>
+FIXME
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) allMethods do: [ :method |
+    Transcript
+        show: 'Selector: ', method selector asString;
+        show: ' | Protocol: ', method protocolName asString;
+        show: ' | Source: ', method sourceCode;
+        cr
+].
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org593aed7" class="outline-3">
+<h3 id="org593aed7"><span class="section-number-3">25.7.</span> List all the protocols</h3>
+<div class="outline-text-3" id="text-25-7">
+<p>
+FIXME what is a protocol ?
+squeak has no organization 
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) organization protocols. "Instance-side protocols"
+(Smalltalk at: #ZZFooBar) class organization protocols. "Class-side protocols"
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0c144f9" class="outline-3">
+<h3 id="org0c144f9"><span class="section-number-3">25.8.</span> change protocol under with a method is</h3>
+<div class="outline-text-3" id="text-25-8">
+<p>
+squeak has no organization
+if protocol does not yet exist , it is created
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">(Smalltalk at: #ZZFooBar) organization
+    classify: #hello
+    under: 'new-protocol'
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga541d0f" class="outline-3">
+<h3 id="orga541d0f"><span class="section-number-3">25.9.</span> change classification of a method</h3>
+<div class="outline-text-3" id="text-25-9">
+<p>
+FIXME
+</p>
+<div class="org-src-container">
+<pre class="src src-smalltalk">
+</pre>
+</div>
+
+
+
+
+<p>
+Teach Smalltalk programming language as though everything done through the playground (also called workspace)
+</p>
+
+<p>
+Be able to wield the full power of Smalltalk through the language completely without IDE or interface 
+</p>
+
+<p>
+Allows me to be able to save a text file and paste into playground and run !
+</p>
+
+<div class="org-src-container">
+<pre class="src src-smalltalk">
+=============================================================================================
+
+
+
+firstly open up any smalltalk image - first thing to do is save image as another name
+this is because smalltalk insists on everything being mutable and saves randomly
+so in order to keep original image clean we save as soon as startup
+tried making certain files read only but corrupted ide programming interface
+
+rule 1 : save a new image on start fresh image
+
+configure pharo14.1 to start dirty image
+configure pharo14 to start a clean development image
+
+===========================================================================================
+
+rule 2 : 
+
+===========================================================================================
+
+"where-ever I say GT , I mean Glamorous Toolkit"
+
+"topic : closures"
+
+[:x | x + 1] value: 2 .
+
+[:x :y | x + y] value: 2 value: 3.
+
+"topic : classes"
+
+"lets add a completely new class Pigeon"
+Object subclass: #Pigeon.
+
+"lets check it exists"
+Pigeon browse.
+
+"we find we do not see anything related to Pigeon this is because Pigeon class belongs to no package"
+
+"we can coerce the symbol Pigeon to the corresponding class"
+"FIXME this comparison did not work"
+"#Pigeon asClass = Pigeon . "
+
+"we can remove the pigeon class"
+Smalltalk removeClassNamed: #Pigeon.
+
+"how do we find if class Pigeon exists ? we check again Object class"
+Smalltalk at: #Pigeon ifAbsent: [ ^ false ]. 
+Smalltalk at: #Object ifAbsent: [ ^ false ].
+Smalltalk at: #Pigeon ifPresent: [ ^ true ] ifAbsent: [ ^ false ].
+
+"lets create Pigeon class again - to check no conflicts "
+Object subclass: #Pigeon.
+
+"lets check that Pigeon is identified as a class"
+Pigeon class.  
+
+Pigeon browse.
+"you may find you cannot see anything called Pigeon - it has no package and no category"
+"package is _UnpackagedPackage"
+
+"lets give our pigeon class a package to live in "
+birdsPackage := Smalltalk organization addPackage: #Birds.
+birdsPackage addClass: Pigeon.
+Pigeon browse.
+
+" lets give our pigeon an instance variable - name"
+Pigeon addInstVarNamed: #name.
+
+"FIXME - this wont work at all ! lets add a method to Pigeon to say hello , the pigeon will say hello on the transcript "
+(Smalltalk at: #Pigeon) compile: 'hello Transcript show: ''Pigeon says'' , name ; cr '.
+
+FIXME ... add a method to pigeon class ..
+System Browser in pharo is called Calypso . all packages methods prefixed Cly presumably to mean Calypso ...
+
+"lets make a pigeon and see if it squawks !"
+p := Pigeon new.
+p hello.
+===============================================================================
+
+not sure how we interrupted execution of 
+===============================================================================
+ClySystemEnvironment we can get one from class instance method call
+just a method call on the class itself , not an instance of a class
+
+ClySystemEnvironment currentImage.   
+
+str := 'Object &lt;&lt; #ZZFooBar
+        layout: FixedLayout;
+        traits: {};
+        slots: { #cow . #milk };
+        sharedVariables: {};
+        sharedPools: {};
+        tag: '''' ;
+        package: ''ZZPackage'' '.
+ClySystemEnvironment currentImage compileANewClassFrom: str notifying: nil startingFrom: nil . 
+
+A cheaper alternative to use Smalltalk classInstaller which didnt even know existed ! grok ftw !
+
+Smalltalk classInstaller
+    make: [ :builder |
+        builder
+            superclass: Object;
+            name: #ZZFooBar;
+            slots: #(cow milk);
+            classSlots: #();
+            sharedPools: '';
+            package: 'ZZPackage' ].
+
+
+we can inspect the class
+(Smalltalk at: #ZZFooBar) inspect. "Inspect the class"
+
+ZZFooBar compile: 'hello3 ^ 3' classified: 'magic number3'. 
+
+(Smalltalk at: #ZZFooBar) instVarNames. "Returns #(#cow #milk)"
+(Smalltalk at: #ZZFooBar) package name. "Returns 'ZZPackage'"
+
+(Smalltalk at: #ZZFooBar) instVarNames. "Returns #(#cow #milk)"
+(Smalltalk at: #ZZFooBar) package name. "Returns 'ZZPackage'"
+
+"we added class side method test "
+test
+ ^ 'yes' 
+
+"running this should result in 'yes' "
+ZZFooBar test. 
+
+"this just confirms that the system as whole is still working as it should"
+
+"we can see Pigeon class now and a hello !"
+============================================================================
+
+ClassDescription &gt;&gt; #compile: sourceCode classified: protocol
+we can now compile a method 
+
+ZZFooBar compile: 'hello3 ^ 3' classified: 'magic number3'. 
+============================================================================
+Now for the class side we can see if we can get hold of ZZFooBar 's meta-class -
+that should be the class side ?
+
+
+str := 'Object &lt;&lt; #ZZFooBar
+        layout: FixedLayout;
+        traits: {};
+        slots: { #cow . #milk };
+        sharedVariables: {};
+        sharedPools: {};
+        tag: '''' ;
+        package: ''ZZPackage'' '.
+ClySystemEnvironment currentImage compileANewClassFrom: str notifying: nil startingFrom: nil . 
+
+
+
+============================================================================
+how do we delete a method (or remove it )
+or really how do we intercept what messages are causing things to actually happen ?
+
+Smalltalk removeClassNamed: #ZZFooBar.
+str := 'Object &lt;&lt; #ZZFooBar
+        layout: FixedLayout;
+        traits: {};
+        slots: { #cow . #milk };
+        sharedVariables: {};
+        sharedPools: {};
+        tag: '''' ;
+        package: ''ZZPackage'' '.
+ClySystemEnvironment currentImage compileANewClassFrom: str notifying: nil startingFrom: nil . 
+ZZFooBar compile: 'hello1 ^ 1' classified: 'magic number'.
+ZZFooBar compile: 'hello2 ^ 2' classified: 'magic number'.
+ZZFooBar compile: 'hello3 ^ 3' classified: 'odd number'.
+
+
+how do we add a class side method ?
+
+
+
+
+============================================================================
+
+"we can list"
+Smalltalk globals.
+
+
+SmalltalkImage seems to be the entry point to the smalltalk image.
+
+===========================================================================
+
+c := CircleMorph new openInHand.
+b := BorderedMorph new openInHand .
+
+
+============================================================================
+
+"put pigeon into birds package "
+
+"we can get a PackageOrganizer from Smalltalk"
+"PackageOrganizer in charge of packages and package tags "
+Smalltalk organization removePackage: #birds.
+Smalltalk organization removePackage: #cows.
+
+Smalltalk organization ensurePackage: 'birds'. 
+Smalltalk organization ensurePackage: 'fools' withTags: #( #foo) .
+Smalltalk organization ensurePackage: 'fools' withTags: #( #foo #bar) .
+
+"PackageTag has method addClass: "
+"how do i make a package tag ? "
+
+"xPackage addClass: c "
+
+"lets add an initialize "
+
+You can also directly execute a method, explicitly passing in the
+receiver and any arguments. Here we look up the hello method we
+compiled earlier in the HelloWorld class. Then we directly execute the
+method ( i.e., without any further lookup) with a Hello World instance
+as the receover and an empty argument array:
+
+method := #HelloWorld asClass&gt;&gt;#hello.
+method valueWithReceiver: #HelloWorld asClass new arguments: #().
+
+Smalltalk removeClassNamed: #Pigeon.  
+
+
+"we could also just slam a nil where HelloWorld would reside - this breaks things"
+Smalltalk at: #HelloWorld put: nil.
+
+
+
+
+"GT suggests
+Object subclass: #HelloWorld  instanceVariableNames: ''  classVariableNames: ''  category: 'HelloWorld'.
+"
+
+
+"glamourous toolkit compiling and evaluating code "
+
+Smalltalk compiler evaluate: '3 + 4'.
+
+MGAlpha addClassVarNamed: 'ridiculous'.
+MGAlpha addInstVarNamed: 'porkey'.
+
+Cat 
+  compile: 'makeSound
+    "Make Cat object make sound."
+    Transcript show: ''Meow!''.'
+  classified: 'actions'.
+
+Class methods select: [:m | m selector beginsWith: 'subclass:'].
+
+
+(Smalltalk at: #HelloWorld) compile: 'hello ^ ''hello'''.
+
+#HelloWorld asClass compile: 'hello ^ ''hello'''.
+
+((Smalltalk at: #HelloWorld) perform: #new) perform: #hello.
+
+3 perform: #+ with: 4.
+
+3 perform: #+ withArguments: {4}.
+
+
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-smalltalk">Metacello new
+          baseline: 'BlocMemoryTutorial';
+          repository: 'github://pharo-graphics/Bloc-Memory-Tutorial/src';
+          load
+
+MGGame withEmoji .
+
+MGGameElement openWithNumber .
+</pre>
+</div>
+
+
+<p>
+A graphical element will inherit from BlElement
+</p>
+
+<pre class="example">
+BlElement &lt;&lt; #MGAlpha
+        slots: { #background };
+        tag: 'Elements';
+        package: 'Bloc-Memory'.
+
+MGAlpha &gt;&gt; initialize [
+    super initialize.
+    self size: 80 @ 80.
+    background := Color lightOrange.
+    self background:  background.
+    self geometry: BlCircleGeometry new.
+    self addEventHandlerOn: BlClickEvent do: [ :anEvent | self click ]
+]
+
+MGAlpha &gt;&gt; click [
+    background = Color lightOrange ifTrue:[ background := Color blue ] ifFalse:[ background := Color lightOrange]
+    self geometry: BlCircleGeometry new.
+    "self addEventHandlerOn: BlClickEvent do: [ :anEvent | self click ]"
+]
+
+
+MGAlpha addClassVarNamed: 'ridiculous'.
+MGAlpha addInstVarNamed: 'porkey'.
+
+</pre>
+
+
+<pre class="example">
+  (add-to-list 'org-structure-template-alist
+               '("s" "#+NAME: ?\n#+BEGIN_SRC \n\n#+END_SRC"))
+;; in org mode
+;; press &lt;s  TAB should give
+"#+NAME:" 
+"#+BEGIN_SRC" 
+"#+END_SRC"
+
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-lisp">(ql:quickload :dml)			
+(in-package :dml)
+
+;; MG memory game
+(dml-create-graph "mgcard-class" ()
+
+  ;; mgcard class
+  (with-method ("+ initialize"
+                "+ symbol (Character)"
+                "+ announcer ()"
+                "+ flip ()"
+              "+ isFlipped ()"
+              "+ notifyFlipped ()"
+                "+ disappear ()"
+                "+ notifyDisappear ()")
+    (full-class "MGCard"
+                "Object"
+                (attributes "- symbol : Character"
+                            "- flipped : Boolean"
+                            "- announcer : Announcer"
+                            ))))
+
+</pre>
+</div>
+
+
+<div id="orgbdcecb1" class="figure">
+<p><img src="mgcard-class.png" alt="mgcard-class.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-smalltalk" id="orgcb4c1ea">Class {
+        #name : 'MGCard',
+        #superclass : 'Object',
+        #instVars : [
+                'symbol',
+                'flipped',
+                'announcer'
+        ],
+        #category : 'Bloc-Memory-Model',
+        #package : 'Bloc-Memory',
+        #tag : 'Model'
+}
+
+MGCard &gt;&gt; announcer [
+ ^ announcer ifNil: [ announcer := Announcer new ]
+]
+
+MGCard &gt;&gt; disappear [
+self notifyDisappear
+]
+
+MGCard &gt;&gt; flip [
+ flipped := flipped not.
+ self notifyFlipped.
+]
+
+MGCard &gt;&gt; initialize [ 
+ super initialize. 
+ flipped := false.
+]
+
+MGCard &gt;&gt; isFlipped [
+ ^ flipped 
+]
+
+MGCard &gt;&gt; notifyDisappear [
+ self announcer announce: MGCardDisappearAnnouncement new
+]
+
+MGCard &gt;&gt; notifyFlipped [
+ self announcer announce: MGCardFlippedAnnouncement new
+]
+
+MGCard &gt;&gt; printOn: aStream [
+aStream 
+nextPutAll: 'Card';
+nextPut: Character space;
+nextPut: $( ;
+nextPut: self symbol;
+nextPut: $)
+]
+
+MGCard &gt;&gt; symbol [
+ ^ symbol
+]
+
+MGCard &gt;&gt; symbol: aCharacter [
+ symbol := aCharacter.
+]
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-lisp">(ql:quickload :dml)			
+(in-package :dml)
+
+;; MG memory game
+(dml-create-graph "mgcard-element-class" ()
+
+  ;; mgcard class
+  (with-method ("initialize"
+                "card"
+                "card: aCard"
+                "backgroundPaint"		  
+                "cardExtent"
+                "cardCornerRadius")
+    (full-class "MGCardElement"
+                ""
+                (attributes "- card "
+                            ))))
+
+</pre>
+</div>
+
+
+<div id="orgee9afef" class="figure">
+<p><img src="mgcard-element-class.png" alt="mgcard-element-class.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-smalltalk" id="org926f277">"
+In Bloc, BlElements draw themselves onto the integrated canvas of the in-
+spector as we inspect them, take a look at our element by executing this (See
+Figure 3-1).
+```
+MGCardElement new inspect
+```
+"	      
+Class {
+        #name : 'MGCardElement',
+        #superclass : 'BlElement',
+        #instVars : [
+'card'
+],
+        #category : 'Bloc-Memory-Elements',
+        #package : 'Bloc-Memory',
+        #tag : 'Elements'
+    }
+MGCardElement &gt;&gt; card [
+^ card  
+]
+
+MGCardElement &gt;&gt; card: aMgCard [
+    card  := aMgCard
+]
+
+
+MGCardElement &gt;&gt; backgroundPaint [
+    "Return a BlPaint that should be used as a background (fill)
+of both back and face sides of the card. Colors are polymorphic
+with BlPaint and therefore can be used too."
+    ^ Color pink darker
+]
+
+
+MGCardElement &gt;&gt; initialize [
+    super initialize.
+"    self size: 80 @ 80. " "replaced with cardExtent"
+    self size: self cardExtent.
+    "A BlBackground is needed for the #background: method, but the
+BlPaint
+is polymorphic with BlBackground and therefore can be used too."
+    self background: self backgroundPaint.
+
+    " no geometry to circle to rounded rectangle"
+    " self geometry: BlCircleGeometry new. "
+    self geometry: (BlRoundedRectangleGeometry cornerRadius: self cardCornerRadius ).    
+    self card: (MGCard new symbol: $a)			     
+]
+
+
+MGCardElement &gt;&gt; cardExtent [
+^ 80@80
+]
+
+MGCardElement &gt;&gt; cardCornerRadius [
+^ 12
+]
+
+"cardbackForm bitmap from bloc-memory game"
+"just get the code"
+
+</pre>
+</div>
+
+
+<p>
+Announcements
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(ql:quickload :dml)			
+(in-package :dml)
+
+;; MG memory game
+(dml-create-graph "mgcard-announcement-classes" ()
+
+  (-genby-*
+     (full-class "Announcement"
+                 ""
+                 (attributes "- name : String"
+                             "- born : Date"))
+     (full-class "MGCardFlippedAnnouncement")
+     (full-class "MGCardDisappearAnnouncement")))
+</pre>
+</div>
+
+
+<div id="orgddd3c46" class="figure">
+<p><img src="mgcard-announcement-classes.png" alt="mgcard-announcement-classes.png" />
+</p>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-smalltalk" id="org54881ef">Class {
+        #name : 'MGCardDisappearAnnouncement',
+        #superclass : 'Announcement',
+        #category : 'Bloc-Memory-Events',
+        #package : 'Bloc-Memory',
+        #tag : 'Events'
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-smalltalk" id="org523bb74">Class {
+        #name : 'MGCardFlippedAnnouncement',
+        #superclass : 'Announcement',
+        #category : 'Bloc-Memory-Events',
+        #package : 'Bloc-Memory',
+        #tag : 'Events'
+}
+</pre>
+</div>
+
+
+
+<p>
+Package.st file contains name of package
+</p>
+
+<div class="org-src-container">
+<pre class="src src-smalltalk" id="org7f8a7fb">Package { #name : 'Bloc-Memory' }
+</pre>
+</div>
+
+
+<p>
+Hidden .properties file - tonel
+</p>
+
+<div class="org-src-container">
+<pre class="src src-smalltalk" id="orgde8dc6c">{
+        #format : #tonel
+} 
+</pre>
+</div>
+
+
+<p>
+pharo bloc memory game tutorial
+</p>
+
+<p>
+bloc is low level graphics
+</p>
+
+<p>
+brick is widget library built on top
+</p>
+
+<p>
+tangle C-c C-v C-t
+C-c C-v C-a	org-babel-sha1-hash
+C-c C-v C-b	org-babel-execute-buffer
+C-c C-v C-c	org-babel-check-src-block
+C-c C-v C-d	org-babel-demarcate-block
+C-c C-v C-e	org-babel-execute-maybe
+C-c C-v C-f	org-babel-tangle-file
+C-c C-v TAB	org-babel-view-src-block-info
+C-c C-v C-j	org-babel-insert-header-arg
+C-c C-v C-l	org-babel-load-in-session
+C-c C-v C-n	org-babel-next-src-block
+C-c C-v C-o	org-babel-open-src-block-result
+C-c C-v C-p	org-babel-previous-src-block
+C-c C-v C-r	org-babel-goto-named-result
+C-c C-v C-s	org-babel-execute-subtree
+C-c C-v C-t	org-babel-tangle
+C-c C-v C-u	org-babel-goto-src-block-head
+C-c C-v C-v	org-babel-expand-src-block
+C-c C-v C-x	org-babel-do-key-sequence-in-edit-buffer
+C-c C-v C-z	org-babel-switch-to-session
+C-c C-v I	org-babel-view-src-block-info
+C-c C-v a	org-babel-sha1-hash
+C-c C-v b	org-babel-execute-buffer
+C-c C-v c	org-babel-check-src-block
+C-c C-v d	org-babel-demarcate-block
+C-c C-v e	org-babel-execute-maybe
+C-c C-v f	org-babel-tangle-file
+C-c C-v g	org-babel-goto-named-src-block
+C-c C-v h	org-babel-describe-bindings
+C-c C-v i	org-babel-lob-ingest
+C-c C-v j	org-babel-insert-header-arg
+C-c C-v k	org-babel-remove-result-one-or-many
+C-c C-v l	org-babel-load-in-session
+C-c C-v n	org-babel-next-src-block
+C-c C-v o	org-babel-open-src-block-result
+C-c C-v p	org-babel-previous-src-block
+C-c C-v r	org-babel-goto-named-result
+C-c C-v s	org-babel-execute-subtree
+C-c C-v t	org-babel-tangle
+C-c C-v u	org-babel-goto-src-block-head
+C-c C-v v	org-babel-expand-src-block
+C-c C-v x	org-babel-do-key-sequence-in-edit-buffer
+C-c C-v z	org-babel-switch-to-session-with-code
+</p>
+
+<p>
+C-c " a		orgtbl-ascii-plot
+C-c " g		org-plot/gnuplot
+</p>
+
+<p>
+C-c C-M-l	org-insert-all-links
+C-c C-M-w	org-refile-reverse
+C-c M-b		org-previous-block
+C-c M-f		org-next-block
+C-c M-l		org-insert-last-stored-link
+C-c M-w		org-refile-copy
+</p>
+
+<p>
+C-c C-x C-a	org-archive-subtree-default
+C-c C-x C-b	org-toggle-checkbox
+C-c C-x C-c	org-columns
+C-c C-x C-d	org-clock-display
+C-c C-x C-f	org-emphasize
+C-c C-x TAB	org-clock-in
+C-c C-x C-j	org-clock-goto
+C-c C-x C-l	org-latex-preview
+C-c C-x C-n	org-next-link
+C-c C-x C-o	org-clock-out
+C-c C-x C-p	org-previous-link
+C-c C-x C-q	org-clock-cancel
+C-c C-x C-r	org-toggle-radio-button
+C-c C-x C-s	org-archive-subtree
+C-c C-x C-t	org-toggle-time-stamp-overlays
+C-c C-x C-u	org-dblock-update
+C-c C-x C-v	org-toggle-inline-images
+C-c C-x C-w	org-cut-special
+C-c C-x C-x	org-clock-in-last
+C-c C-x C-y	org-paste-special
+C-c C-x C-z	org-resolve-clocks
+C-c C-x !	org-reload
+C-c C-x ,	org-timer-pause-or-continue
+C-c C-x -	org-timer-item
+C-c C-x .	org-timer
+C-c C-x 0	org-timer-start
+C-c C-x ;	org-timer-set-timer
+C-c C-x &lt;	org-agenda-set-restriction-lock
+C-c C-x &gt;	org-agenda-remove-restriction-lock
+</p>
+
+
+
+<p>
+C-c C-x @	org-cite-insert
+C-c C-x A	org-archive-to-archive-sibling
+C-c C-x E	org-inc-effort
+C-c C-x G	org-feed-goto-inbox
+C-c C-x I	org-info-find-node
+C-c C-x P	org-set-property-and-value
+C-c C-x [	org-reftex-citation
+C-c C-x \	org-toggle-pretty-entities
+C-c C-x _	org-timer-stop
+C-c C-x a	org-toggle-archive-tag
+C-c C-x b	org-tree-to-indirect-buffer
+C-c C-x c	org-clone-subtree-with-time-shift
+C-c C-x d	org-insert-drawer
+C-c C-x e	org-set-effort
+C-c C-x f	org-footnote-action
+C-c C-x g	org-feed-update-all
+C-c C-x o	org-toggle-ordered-property
+C-c C-x p	org-set-property
+C-c C-x q	org-toggle-tags-groups
+C-c C-x v	org-copy-visible
+C-c C-x x	org-dynamic-block-insert-dblock
+</p>
+
+<p>
+C-c C-v C-M-h	org-babel-mark-block
+</p>
+
+<p>
+C-c C-x C-M-v	org-redisplay-inline-images
+C-c C-x M-w	org-copy-special
+</p>
+
+
+<p>
+# #+BEGIN<sub>SRC</sub> c
+</p>
+
+
+<p>
+##+header: :var message="Hello World!"
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(ql:quickload :dml)			;
+(in-package :dml)
+
+(format t "hello world")
+
+</pre>
+</div>
+
+<pre class="example">
+NIL
+</pre>
+
+
+
+<pre class="example">
+Metacello new
+baseline: 'BlocMemoryTutorial';
+repository: 'github://pharo-graphics/Bloc-Memory-Tutorial/src';
+load
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(ql:quickload :dml)			;
+(in-package :dml)
+
+(dml-create-graph "os-class" ()
+  (with-method ("+ play () : Love" "+ work () : Hate")
+    (-genby-*
+     (full-class "OS"
+                 "abstract"
+                 (attributes "- name : String"
+                             "- born : Date"))
+     (full-class "Linux")
+     (full-class "Android")
+     (full-class "Apple")
+     (full-class "Windows"))
+    (-dep- "from"
+           (@name "Android")
+           (@name"Linux"))))
+
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-lisp">(ql:quickload :dml)			
+(in-package :dml)
+
+;; MG memory game
+(dml-create-graph "mgdemo-classes" ()
+
+  ;; mgcard class
+  (with-method ("+ initialize"
+		"+ symbol (Character)"
+		"+ announcer ()"
+		"+ flip ()"
+	      "+ isFlipped ()"
+	      "+ notifyFlipped ()"
+		"+ disappear ()"
+		"+ notifyDisappear ()")
+    (full-class "MGCard"
+		"Object"
+		(attributes "- symbol : Character"
+			    "- flipped : Boolean"
+			    "- announcer : Announcer"
+			    )))
+
+
+  ;; mggame class
+  (with-method ("+ alpha () : int" "+ beta () : float")
+    (full-class "MGGame"))
+
+  ;; mggameelement class
+  (with-method ("+ alpha () : int" "+ beta () : float")
+    (full-class "MGGameElement"))
+
+
+
+
+  (full-class "MGCard")
+  (with-method ("+ top () : middle" "+ bottom () : Side")
+    (-genby-*
+     (full-class "OS"
+		 "abstract"
+		 (attributes "- name : String"
+			     "- born : Date"))
+     (full-class "Linux")
+     (full-class "Android")
+     (full-class "Apple")
+     (full-class "Windows"))
+    (-dep- "from"
+	   (@name "Android")
+	   (@name"Linux"))))
+
+</pre>
+</div>
+
+<pre class="example">
+NIL
+</pre>
+
+
+
+<div id="orga6994dc" class="figure">
+<p><img src="mgdemo-classes.png" alt="mgdemo-classes.png" />
+</p>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-org180876d" class="outline-3">
+<h3 id="org180876d"><span class="section-number-3">25.10.</span> Lets make a circle</h3>
+<div class="outline-text-3" id="text-25-10">
+<pre class="example">
+
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgca18068" class="outline-3">
+<h3 id="orgca18068"><span class="section-number-3">25.11.</span> Lets make a circle</h3>
+<div class="outline-text-3" id="text-25-11">
+<pre class="example">
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: terry</p>
+<p class="date">Created: 2025-09-19 Fri 00:17</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
