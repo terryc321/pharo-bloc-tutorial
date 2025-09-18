@@ -1,5 +1,23 @@
 
 
+* LATEST
+
+Currently writing Breakout
+
+terryc321.github.com/Breakout
+
+* Kill inspectors
+
+#+BEGIN_SRC
+SystemWindow allInstances
+  select: [ :window | 
+    (window model isKindOf: StInspector) or: [ 
+      (window model isKindOf: GTInspector) or: [ 
+        window model isKindOf: Inspector ] ] ]
+  thenDo: [ :window | window delete ]
+#+END_SRC
+
+
 * Keyboard event handling
 
 see lower down - find keylogger
@@ -32,6 +50,7 @@ drag drop maybe ?
 This is low level stuff
 
 #+BEGIN_SRC
+FIXME Does not work !!!
 Metacello new
     baseline: 'SpartaAlexandrie';
     repository: 'github://pharo-graphics/Sparta:dev/src';
@@ -84,6 +103,24 @@ load BlocMemoryTutorial
 
 * Bloc graphical elements   
 
+* Motivating example - make a bouncing ball game in Bloc
+** Have keyboard input and actions take place when press left / right -- 
+** Build a matrix of coloured bricks ?
+** Have bouncing ball ?
+** Open a window
+** Close a window
+** Get size of window
+** have a title - game score
+** play sound when 
+** Collision detection ?
+** can we add event listening to it ? 
+** can we do move over event ? we have seen that before
+
+
+
+
+
+
 * Rectangles
 Lets start with a rectangle
 
@@ -95,12 +132,18 @@ demoRectangle
 "Create an empty rectangle"
 |rectangle|
 rectangle := BlElement new
-        background: Color black ;
+        background: Color red ;
         position: 200 @ 100 ; 
 	size: 150 @ 150;
 	yourself.
 ^ rectangle.
 #+END_SRC
+
+
+
+
+
+
 
 ** And now rotated 45 degrees , this is rotated by top left corner
 #+BEGIN_SRC
