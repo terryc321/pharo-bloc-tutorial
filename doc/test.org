@@ -1,5 +1,52 @@
 
+
+* Keyboard event handling
+
+see lower down - find keylogger
+
+* Mouse event handling
+
+mouse over
+mouse enter
+mouse leave
+click event
+double click event
+drag drop maybe ?
+
+* Spec
+
+* Spec2
+
+* GT World
+
+* Toplo
+
+* Roassal
+
+* Coypu
+
+* TinyPaint
+
+* Alexandrie
+
+This is low level stuff
+
+#+BEGIN_SRC
+Metacello new
+    baseline: 'SpartaAlexandrie';
+    repository: 'github://pharo-graphics/Sparta:dev/src';
+    load.
+#+END_SRC
+    
+
 * Bloc
+Bloc is a low-level UI infrastructure & framework for Pharo.
+
+https://github.com/pharo-graphics/Bloc
+
+
+** Bloc baseline
+The baseline for bloc is 
 
 #+BEGIN_SRC
 Metacello new
@@ -8,9 +55,157 @@ Metacello new
 	load
 #+END_SRC
 
+** Bloc spec
+The spec for bloc is
+
+How do we use spec again ?
+
 #+BEGIN_SRC
 spec baseline: 'Bloc' with: [ spec repository: 'github://pharo-graphics/Bloc:v2.5.0/src' ].
 #+END_SRC
+
+*** Bloc tutorial
+This a memory card game written in Bloc , whats most useful is it comes with some ready to use examples 
+#+BEGIN_SRC smalltalk
+Metacello new
+          baseline: 'BlocMemoryTutorial';
+          repository: 'github://pharo-graphics/Bloc-Memory-Tutorial/src';
+          load
+
+"MG Memory Game "
+MGGame withEmoji .
+MGGameElement openWithNumber .
+#+END_SRC
+
+*** KeyLogger
+load BlocMemoryTutorial
+
+- BlKeyCombinationExamplesTest
+
+* Bloc graphical elements   
+
+* Rectangles
+Lets start with a rectangle
+
+Its easiest to have a filled rectangle
+#+BEGIN_SRC
+demoRectangle
+<demo>
+<sampleInstance>
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        background: Color black ;
+        position: 200 @ 100 ; 
+	size: 150 @ 150;
+	yourself.
+^ rectangle.
+#+END_SRC
+
+** And now rotated 45 degrees , this is rotated by top left corner
+#+BEGIN_SRC
+demoRectangle2
+<demo>
+<sampleInstance>
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        background: Color black ;
+        position: 200 @ 100 ; 
+	size: 150 @ 150;
+        transformDo: [ :t | t rotateBy: 45 ] ;
+	yourself.
+^ rectangle.
+#+END_SRC
+
+** solid rotated 45 already at top left
+
+expect some of the rectangle to be clipped as some of it will be off screen
+
+#+BEGIN_SRC
+demoRectangle4
+<demo>
+<sampleInstance>
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        background: Color black ;
+        position: 0 @ 0 ; 
+	size: 150 @ 150;
+        transformDo: [ :t | t rotateBy: 45 ] ;
+	yourself.
+^ rectangle.
+#+END_SRC
+
+* BlAffineTransformationOrigin
+
+BlAffineTransformationTopLeftOrigin ?
+BlAffineTransformationLeftCentreOrigin ?
+BlRotationTransformation ?
+
+** A hollow rectangle
+#+BEGIN_SRC
+demoRectangle5
+<demo>
+<sampleInstance>
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        border: (BlBorder paint: Color black width: 2);
+        position: 0 @ 0 ; 
+	size: 150 @ 150;
+        transformDo: [ :t |
+            t origin: (BlAffineTransformationTopLeftOrigin new); 
+            rotateBy: 45 ] ;
+	yourself.
+^ rectangle.
+#+END_SRC
+
+
+** rotation about centre 
+#+BEGIN_SRC
+demoRectangle3
+<demo>
+<sampleInstance>
+"Create an empty rectangle"
+|rectangle|
+rectangle := BlElement new
+        border: (BlBorder paint: Color black width: 2);
+        position: 200 @ 100 ; 
+	size: 150 @ 150;
+        transformDo: [ :t | t rotateBy: 45 ] ;
+	yourself.
+
+rectangle transformDo: [ :t | 
+    t origin: (BlAffineTransformationCenterOrigin new); 
+    rotateBy: 45 ].
+^ rectangle.
+#+END_SRC
+
+
+
+<sampleInstance> pragma makes Pharo aware this is a graphical element
+and can be displayed. This lets Pharo place a green play button on
+system browser to mean click this and see it on screen.
+
+<demo> pragma makes Pharo aware this is a demo -?
+
+
+This is a filled rectangle 150,150 in size
+#+BEGIN_SRC
+demoRectangle2
+<sampleInstance>
+<demo>
+"Create a red rectangle"
+|rectangle|
+rectangle := BlElement new 
+	background: Color red;  "putting background to a color makes it filled"
+	size: 150 @ 150;
+	yourself.
+^ rectangle.
+#+END_SRC
+
+
 
 * Bloc tutorial
 This a memory card game written in Bloc , not sure if it makes sense.
