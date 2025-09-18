@@ -26,6 +26,7 @@ Smalltalk classInstaller
             package: 'ZZPackage' ].
 #+END_SRC
 
+
 ** add a method with 
 #+BEGIN_SRC smalltalk
 (Smalltalk at: #ZZFooBar) compile: 'hello10 ^ 11' classified: nil. 
@@ -1287,13 +1288,15 @@ We get a green triangle , we can play the animation .an iconicButtonMorph.
 
 [[file:images/BlAnimationExamples-BallsAnim.png]]
 
+two pragmas 
 
 #+BEGIN_SRC
-ballsAnim
-	<sampleInstance>
-	<demo>
 
-	| elements animations |
+
+ballsAnim
+"<sampleInstance>"
+"<demo>"
+    | elements animations |
 	animations := OrderedCollection new.
 	elements := OrderedCollection new.
 
@@ -1351,27 +1354,88 @@ newFrameContainer
 #+END_SRC
 
 
-** Lets make a circle
-#+BEGIN_SRC
 
+** Lets draw a line
+This works and draws a red line 
+#+BEGIN_SRC
+| space lineElement |
+
+"Create a BlElement with BlLineGeometry"
+lineElement := BlElement new
+    geometry: (BlLineGeometry from: 50@50 to: 200@200);
+    border: (BlBorder paint: Color green width: 20);
+    yourself.
+
+"Set up the space"
+space := BlSpace new. 
+    space root addChild: lineElement;
+    extent: 400@300;
+    yourself.
+
+space show.	
+#+END_SRC
+
+* Polygons
+
+** Polygon no fill
+some weird looking polygon 
+#+BEGIN_SRC
+  | space polygonElement vertices |
+
+"Define the vertices for a pentagon"
+vertices := { 
+    100@50.  "Top"
+    150@100. "Right-top"
+    130@150. "Right-bottom"
+    70@150.  "Left-bottom"
+    50@100   "Left-top"
+}.
+
+"Create a BlElement with BlPolygonGeometry"
+polygonElement := BlElement new
+    geometry: (BlPolygonGeometry vertices: vertices);
+    border: (BlBorder paint: Color red width: 3);
+    background: Color transparent; "Ensure no fill"
+    yourself.
+
+"Set up the space"
+space := BlSpace new.
+    space root addChild: polygonElement;
+    extent: 400@300;
+    yourself.
+
+space show. 
 #+END_SRC
 
 
-** Lets make a circle
+** Polygon with fill 
 #+BEGIN_SRC
+| space polygonElement vertices |
 
-#+END_SRC
+"Define the vertices for a pentagon"
+vertices := { 
+    100@50.  "Top"
+    150@100. "Right-top"
+    130@150. "Right-bottom"
+    70@150.  "Left-bottom"
+    50@100   "Left-top"
+}.
 
+"Create a BlElement with BlPolygonGeometry and fill"
+polygonElement := BlElement new
+    geometry: (BlPolygonGeometry vertices: vertices);
+    background: Color red; "Fill color"
+    border: (BlBorder paint: Color black width: 2); "Optional outline"
+    yourself.
 
-** Lets make a circle
-#+BEGIN_SRC
+"Set up the space"
+space := BlSpace new.
+    space root addChild: polygonElement;
+    extent: 400@300;
+    yourself.
 
-#+END_SRC
-
-
-** Lets make a circle
-#+BEGIN_SRC
-
+space show.
+ 
 #+END_SRC
 
 
