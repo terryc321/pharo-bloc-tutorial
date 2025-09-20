@@ -1,4 +1,88 @@
 
+* Introduction
+
+
+* A simple rectangle 
+
+Create a BlocDemo class which will hold our demo
+
+we can create a class in pharo smalltalk using playground with this code.
+
+#+BEGIN_SRC
+
+"load the bloc library"
+
+Metacello new
+	baseline: 'Bloc';
+	repository: 'github://pharo-graphics/Bloc:master/src';
+	load.
+
+"create bloc tutorial demo class BTDemo to hold our demos"
+
+"instance variables ? "
+"class instance variables"
+Smalltalk classInstaller
+    make: [ :builder |
+        builder
+            superclass: Object;
+            name: #BTDemo ;  
+            sharedPools: '';
+            package: 'Bloc-Tutorial' ].
+
+"Now lets add a method that will show the most basic bloc element BlElement"
+
+(Smalltalk at: #BTDemo) compile: 'demo1
+        <sampleInstance>
+        | rectangle |
+        rectangle := BlElement new 
+        background: Color red; 
+        size: 150 @ 150.
+        ^ rectangle.'
+classified: 'rectangles'.
+
+#+END_SRC
+
+=======================================================
+
+* Bloc
+Bloc is a low-level UI infrastructure & framework for Pharo.
+
+https://github.com/pharo-graphics/Bloc
+
+
+** Bloc baseline
+To load bloc into pharo evaluate this in a playground
+
+#+BEGIN_SRC
+
+"load the bloc library"
+Metacello new
+	baseline: 'Bloc';
+	repository: 'github://pharo-graphics/Bloc:master/src';
+	load
+#+END_SRC
+
+you can open a playground in pharo with keyboard shortcut CTRL+O+P
+
+how can we change this shortcut 
+
+* Bloc spec
+If you make a project that depends on bloc you will need the spec baseline
+
+#+BEGIN_SRC
+spec baseline: 'Bloc' with: [ spec repository: 'github://pharo-graphics/Bloc:v2.5.0/src' ].
+#+END_SRC
+
+how do we use a spec baseline ??
+
+===========================================================================================
+
+
+
+
+
+
+
 * Motivating example - make a bouncing ball game in Bloc
 
 [[file:Breakout-version002.png]]
@@ -14,7 +98,6 @@
 ** Collision detection ?
 ** can we add event listening to it ? 
 ** can we do move over event ? we have seen that before
-
 
 
 * LATEST
@@ -74,31 +157,6 @@ Metacello new
     load.
 #+END_SRC
     
-
-* Bloc
-Bloc is a low-level UI infrastructure & framework for Pharo.
-
-https://github.com/pharo-graphics/Bloc
-
-
-** Bloc baseline
-The baseline for bloc is 
-
-#+BEGIN_SRC
-Metacello new
-	baseline: 'Bloc';
-	repository: 'github://pharo-graphics/Bloc:master/src';
-	load
-#+END_SRC
-
-** Bloc spec
-The spec for bloc is
-
-How do we use spec again ?
-
-#+BEGIN_SRC
-spec baseline: 'Bloc' with: [ spec repository: 'github://pharo-graphics/Bloc:v2.5.0/src' ].
-#+END_SRC
 
 *** Bloc tutorial
 This a memory card game written in Bloc , whats most useful is it comes with some ready to use examples 
